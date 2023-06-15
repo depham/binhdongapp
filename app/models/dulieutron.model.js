@@ -1,7 +1,6 @@
 const db = require('../common/connect');
 const exceljs = require('exceljs');
 const XLSX = require("xlsx");
-const fs = require('fs');
 
 //const tempFolderPath = './temp';
 //const storageFolderPath = './storage';
@@ -32,7 +31,7 @@ const DuLieuTron = function(dulieutron){
     this.M_CE3 = dulieutron.M_CE3;
     this.PV_CE3 = dulieutron.PV_CE3;
     this.PV_PG = dulieutron.PV_PG;
-    //this.DateCreate = dulieutron.DateCreate;
+    this.DateCreate = dulieutron.DateCreate;
 
 }
 
