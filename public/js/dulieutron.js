@@ -34,10 +34,11 @@ function updateTable(page, conditions) {
             // Cột Giờ
             const timeCell = document.createElement('td');
             var dateObj = new Date(item.Time);
-            //console.log(dateObj);
+            console.log(dateObj);
             var hours = dateObj.getHours();
             var minutes = dateObj.getMinutes();
             var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+            console.log(formattedTime);
             timeCell.textContent = formattedTime;
             row.appendChild(timeCell);
 
