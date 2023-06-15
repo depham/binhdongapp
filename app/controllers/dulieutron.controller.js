@@ -76,8 +76,8 @@ exports.get_excel_ByCondition = function(req, res) {
       NameProduct: req.query.productName,
       ToDate: req.query.toDate
     };
-    DuLieuTron.getExcelByConditions(conditions, function(storagePath) {
-        res.send({ result: storagePath });
+    DuLieuTron.getExcelByConditions(conditions, function(dulieutron) {
+        res.send({ result: dulieutron});
     });
   };
 

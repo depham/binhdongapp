@@ -3,20 +3,20 @@ const exceljs = require('exceljs');
 const XLSX = require("xlsx");
 const fs = require('fs');
 
-const tempFolderPath = './temp';
-const storageFolderPath = './storage';
+//const tempFolderPath = './temp';
+//const storageFolderPath = './storage';
 
 // Tạo thư mục temp
-if (!fs.existsSync(tempFolderPath)) {
-  fs.mkdirSync(tempFolderPath);
-  console.log('Thư mục temp đã được tạo.');
-}
+//if (!fs.existsSync(tempFolderPath)) {
+//  fs.mkdirSync(tempFolderPath);
+//  console.log('Thư mục temp đã được tạo.');
+//}
 
 // Tạo thư mục storage
-if (!fs.existsSync(storageFolderPath)) {
-  fs.mkdirSync(storageFolderPath);
-  console.log('Thư mục storage đã được tạo.');
-}
+//if (!fs.existsSync(storageFolderPath)) {
+//  fs.mkdirSync(storageFolderPath);
+//  console.log('Thư mục storage đã được tạo.');
+//}
 
 const DuLieuTron = function(dulieutron){
     this.DuLieuTronID = dulieutron.DuLieuTronID;
@@ -230,27 +230,28 @@ DuLieuTron.getExcelByConditions = function(conditions, result) {
         
         
         // Tạo file Excel
-        const workbook = XLSX.utils.book_new();
-        const sheetData = XLSX.utils.json_to_sheet(dulieutron);
-        XLSX.utils.book_append_sheet(workbook, sheetData, "Sheet 1"); // Thay "Sheet 1" bằng tên sheet của bạn
+        //const workbook = XLSX.utils.book_new();
+        //const sheetData = XLSX.utils.json_to_sheet(dulieutron);
+        //XLSX.utils.book_append_sheet(workbook, sheetData, "Sheet 1"); // Thay "Sheet 1" bằng tên sheet của bạn
 
         // Tạo tệp tin Excel tạm thời
-        const tempFilePath = "./temp/excel_temp.xlsx"; // Đường dẫn tới tệp tin Excel tạm thời
-        XLSX.writeFile(workbook, tempFilePath);
+        //const tempFilePath = "./temp/excel_temp.xlsx"; // Đường dẫn tới tệp tin Excel tạm thời
+        //XLSX.writeFile(workbook, tempFilePath);
 
         // Di chuyển tệp tin Excel tạm thời vào thư mục lưu trữ trên server
-        const storagePath = "./storage/excel_file.xlsx"; // Đường dẫn tới thư mục lưu trữ tệp tin Excel
-        fs.rename(tempFilePath, storagePath, (error) => {
-          if (error) {
-            console.error("Lỗi khi di chuyển tệp tin:", error);
-            return res.status(500).json({ success: false, message: "Có lỗi xảy ra khi di chuyển tệp tin Excel." });
-          }
+        //const storagePath = "./storage/excel_file.xlsx"; // Đường dẫn tới thư mục lưu trữ tệp tin Excel
+        //fs.rename(tempFilePath, storagePath, (error) => {
+          //if (error) {
+            //console.error("Lỗi khi di chuyển tệp tin:", error);
+            //return res.status(500).json({ success: false, message: "Có lỗi xảy ra khi di chuyển tệp tin Excel." });
+          //}
 
       // Trả về đường dẫn của tệp tin Excel đã tạo
-      console.log(storagePath);
-        result(storagePath);
+      //console.log(storagePath);
+        //result(dulieutron);
 
-        });
+        //});
+        result(dulieutron);
       }
     });
   };

@@ -353,16 +353,16 @@ function handleExcel(event, conditions) {
       .then(response => response.json())
       .then(data => {
         
-        var serverFilePath = 'https://binhdongfactorygapp.vercel.app/storage/excel_file.xlsx';
+        //var serverFilePath = 'https://binhdongfactorygapp.vercel.app/storage/excel_file.xlsx';
 
-        console.log(serverFilePath);
+        //console.log(serverFilePath);
       // Tạo liên kết tải xuống động với đường dẫn tệp tin Excel
-        var link = document.createElement("a");
-        link.href = serverFilePath;
-        link.download = "custom_filename.xlsx";
+        //var link = document.createElement("a");
+        //link.href = serverFilePath;
+        //link.download = "custom_filename.xlsx";
 
       // Bắt đầu tải xuống
-      link.click();
+      //link.click();
 
       })
       .catch(error => {
