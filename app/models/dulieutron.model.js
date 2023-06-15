@@ -3,20 +3,20 @@ const exceljs = require('exceljs');
 const XLSX = require("xlsx");
 const fs = require('fs');
 
-const tempFolderPath = './temp';
-const storageFolderPath = './storage';
+//const tempFolderPath = './temp';
+//const storageFolderPath = './storage';
 
- //Tạo thư mục temp
-if (!fs.existsSync(tempFolderPath)) {
-  fs.mkdirSync(tempFolderPath);
-  console.log('Thư mục temp đã được tạo.');
-}
+// Tạo thư mục temp
+//if (!fs.existsSync(tempFolderPath)) {
+//  fs.mkdirSync(tempFolderPath);
+//  console.log('Thư mục temp đã được tạo.');
+//}
 
 // Tạo thư mục storage
-if (!fs.existsSync(storageFolderPath)) {
-  fs.mkdirSync(storageFolderPath);
-  console.log('Thư mục storage đã được tạo.');
-}
+//if (!fs.existsSync(storageFolderPath)) {
+//  fs.mkdirSync(storageFolderPath);
+//  console.log('Thư mục storage đã được tạo.');
+//}
 
 const DuLieuTron = function(dulieutron){
     this.DuLieuTronID = dulieutron.DuLieuTronID;
