@@ -10,13 +10,13 @@ module.exports = function(router){
 
     router.get("/dulieutron/totalrow", middleware.checkAuthentication, dulieutronController.get_total_row);
 
-    router.get("/dulieutron/totalrowbycondition", middleware.checkAuthentication, dulieutronController.get_total_row_ByCondition);
+    router.get("/dulieutron/totalrowbycondition", dulieutronController.get_total_row_ByCondition);
 
     router.get("/dulieutron/page/:page", middleware.checkAuthentication, dulieutronController.get_page_dulieutron);
 
     router.get("/dulieutron/detail/:id", middleware.checkAuthentication, dulieutronController.detail);
 
-    router.get("/dulieutron/detailbycondition/", middleware.checkAuthentication, dulieutronController.detail_ByCondition);
+    router.get("/dulieutron/detailbycondition/", dulieutronController.detail_ByCondition);
 
     router.post("/dulieutron/add", dulieutronController.add_dulieutron);
 
