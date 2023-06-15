@@ -1,6 +1,6 @@
 function updateTable(page, conditions) {
   //console.log(page);
-  const url = `https://binhdongfactorygapp.vercel.app/dulieutron/detailbycondition?page=${page}&${new URLSearchParams(conditions)}`;
+  const url = `https://factory-binhdong.vercel.app/dulieutron/detailbycondition?page=${page}&${new URLSearchParams(conditions)}`;
 
     //console.log(page);
     fetch(url)
@@ -148,7 +148,7 @@ function updateTable(page, conditions) {
     });
   });
   function getTotalRows(conditions) {
-    const url = "https://binhdongfactorygapp.vercel.app/dulieutron/totalrowbycondition?" + new URLSearchParams(conditions);
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalrowbycondition?" + new URLSearchParams(conditions);
   
     return fetch(url)
       .then(response => response.json())
@@ -347,7 +347,7 @@ searchButton.addEventListener("click", handleSearch);
 function handleExcel(event, conditions) {
   event.preventDefault();
   console.log(conditions);
-  const url = "https://binhdongfactorygapp.vercel.app/dulieutron/exportexcel?" + new URLSearchParams(conditions).toString();
+  const url = "https://factory-binhdong.vercel.app/dulieutron/exportexcel?" + new URLSearchParams(conditions).toString();
 
   fetch(url)
       .then(response => response.json())
