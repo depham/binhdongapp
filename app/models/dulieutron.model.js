@@ -147,56 +147,56 @@ DuLieuTron.getByID = function(id, result){
 }
 
 DuLieuTron.getByConditions = function(conditions, page, result) {
+  var perPage = 50;
+  var offset = (page - 1) * perPage;
 
-    var perPage = 50;
-    var offset = (page - 1) * perPage;
-    
-    var query = "SELECT * FROM dulieutronbd";
-    var params = [];
-    var values = [];
-    
-    for (var key in conditions) {
-        if (key === "MachineID" || key === "NameProduct") {
-          if (conditions[key]) {
-            params.push(key + " = ?");
-            values.push(conditions[key]);
-          }
-        } else if (key === "FromDate" || key === "ToDate") {
-          if (conditions[key]) {
-            params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
-            values.push(conditions[key]);
-          }
-        }
+  var query = "SELECT * FROM dulieutronbd";
+  var params = [];
+  var values = [];
+
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
       }
-  
-    // Loại bỏ dấu ngoặc kép từ các giá trị trong mảng values
-    for (var i = 0; i < values.length; i++) {
-        if (typeof values[i] === 'string') {
-          values[i] = values[i].replace(/"/g, '');
-        }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
       }
-    if (params.length > 0) {
-        query += " WHERE " + params.join(" AND ");
-    }  
-    //query += params.join(" AND ");
+    }
+  }
 
-    query += " ORDER BY Date DESC";
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
 
-    query += " LIMIT ? OFFSET ?";
+  query += " ORDER BY Date DESC LIMIT ? OFFSET ?";
 
-    values.push(perPage);
-    values.push(offset);
+  values.push(perPage);
+  values.push(offset);
 
-    console.log(values);
-    console.log(query);
-    db.query(query, values, function(err, dulieutron) {
-      if (err) {
-        result(null);
-      } else {
-        result(dulieutron);
-      }
-    });
-  };
+  console.log(values);
+  console.log(query);
+
+  db.query(query, values, function(err, dulieutron) {
+    if (err) {
+      console.error(err);
+      result(null);
+      return;
+    }
+
+    try {
+      var jsonResult = JSON.stringify(dulieutron);
+      result(jsonResult);
+    } catch (error) {
+      console.error(error);
+      result(null);
+    }
+  });
+};
+
 
 DuLieuTron.getExcelByConditions = function(conditions, result) {
     var query = "SELECT * FROM dulieutronbd";
