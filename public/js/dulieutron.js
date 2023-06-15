@@ -38,8 +38,8 @@ function updateTable(page, conditions) {
             // Chuyển đổi múi giờ từ múi giờ máy chủ sang múi giờ người dùng
             const userTimeObj = new Date(dateObj.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh", timeZoneName: "short" }));
 
-            const hours = userTimeObj.getHours();
-            const minutes = userTimeObj.getMinutes();
+            const hours = dateObj.getHours();
+            const minutes = dateObj.getMinutes();
             const formattedTime = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
             timeCell.textContent = formattedTime;
             row.appendChild(timeCell);
