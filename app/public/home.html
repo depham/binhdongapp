@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Danh sách Dữ liệu Trộn</title>
+  <meta name="DNT" content="1" />
+
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h1>Danh sách Dữ liệu Trộn</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Mẻ trộn</th>
+        <th>Giờ</th>
+        <th>Ngày</th>
+        <th>Máy</th>
+        <th>Tên hàng</th>
+        <th>STTM</th>
+        <th>M_CE1</th>
+        <th>PV_CE1</th>
+        <th>M_CE2</th>
+        <th>PV_CE2</th>
+        <th>M_CE3</th>
+        <th>PV_CE3</th>
+        <th>PV_PG</th>
+        <!--<th>Date Create</th>-->
+      </tr>
+    </thead>
+    <tbody id="dataList">
+      <!-- Dữ liệu sẽ được thêm vào đây -->
+    </tbody>
+  </table>
+
+  <script>
+    // Sử dụng JavaScript để fetch dữ liệu từ API và cập nhật vào bảng
+    
+    fetch('http://localhost:3000/dulieutron/list')
+      .then(response => response.json())
+      .then(data => {
+    const result = data.result;
+    if (Array.isArray(result)) {
+      const dataList = document.getElementById('dataList');
+      result.forEach((item, index) => {
+        // ...
+        // Tạo các thẻ <td> và thêm dữ liệu vào bảng
+        // ...
+        const row = document.createElement('tr');
+
+            // Cột STT
+            const sttCell = document.createElement('td');
+            sttCell.textContent = index + 1;
+            row.appendChild(sttCell);
+
+          // Cột ID
+            const idCell = document.createElement('td');
+            idCell.textContent = item.DuLieuTronID;
+            row.appendChild(idCell);
+
+            // Cột Giờ
+            const timeCell = document.createElement('td');
+            var dateObj = new Date(item.Time);
+            console.log(dateObj);
+            var hours = dateObj.getHours();
+            var minutes = dateObj.getMinutes();
+            var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+            timeCell.textContent = formattedTime;
+            row.appendChild(timeCell);
+
+            // Cột Ngày
+            const dateCell = document.createElement('td');
+            const date = new Date(item.Date);
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            const formattedDate = date.toLocaleDateString('en-GB', options); // 'en-GB' để đảm bảo định dạng ngày/tháng/năm là dd/MM/yyyy
+            dateCell.textContent = formattedDate;
+            row.appendChild(dateCell);
+
+            // Cột MachineID
+            const idMachineCell = document.createElement('td');
+            idMachineCell.textContent = item.MachineID;
+            row.appendChild(idMachineCell);
+
+            // Cột TenHang
+            const tenHangCell = document.createElement('td');
+            tenHangCell.textContent = item.NameProduct;
+            row.appendChild(tenHangCell);
+
+            // Cột STTM
+            const sttmCell = document.createElement('td');
+            sttmCell.textContent = item.STTM;
+            row.appendChild(sttmCell);
+
+            // Cột M_CE1
+            const m_Ce1Cell = document.createElement('td');
+            m_Ce1Cell.textContent = item.M_CE1;
+            row.appendChild(m_Ce1Cell);
+
+            // Cột PV_CE1
+            const pv_CE1Cell = document.createElement('td');
+            pv_CE1Cell.textContent = item.PV_CE1;
+            row.appendChild(pv_CE1Cell);
+
+            // Cột M_CE2
+            const m_Ce1Cel2 = document.createElement('td');
+            m_Ce1Cel2.textContent = item.M_CE2;
+            row.appendChild(m_Ce1Cel2);
+
+            // Cột PV_CE2
+            const pv_CE2Cell = document.createElement('td');
+            pv_CE2Cell.textContent = item.PV_CE2;
+            row.appendChild(pv_CE2Cell);
+
+            // Cột M_CE3
+            const m_Ce3Cell = document.createElement('td');
+            m_Ce3Cell.textContent = item.M_CE3;
+            row.appendChild(m_Ce3Cell);
+
+            // Cột PV_CE3
+            const pv_CE3Cell = document.createElement('td');
+            pv_CE3Cell.textContent = item.PV_CE3;
+            row.appendChild(pv_CE3Cell);
+
+            // Cột PV_PG
+            const pv_PGCell = document.createElement('td');
+            pv_PGCell.textContent = item.PV_PG;
+            row.appendChild(pv_PGCell);
+
+            // Cột Create
+            //const timeCreateCell = document.createElement('td');
+            //var dateObj = new Date(item.DateCreate);
+            //console.log(dateObj);
+            //var hours = dateObj.getHours();
+            //var minutes = dateObj.getMinutes();
+            //var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+
+            //var day = dateObj.getDate();
+            //var month = dateObj.getMonth() + 1; // Lưu ý: tháng bắt đầu từ 0
+           // var year = dateObj.getFullYear();
+            //var formattedDateCreate = day + '/' + month + '/' + year;
+
+            //var dateTime = formattedDateCreate + ' ' + formattedTime;
+           // timeCreateCell.textContent = dateTime;
+            //row.appendChild(timeCreateCell);
+
+          dataList.appendChild(row);
+      });
+    } else {
+      console.error('Dữ liệu không phải là một mảng:', result);
+    }
+  })
+  .catch(error => console.error(error))
+  </script>
+</body>
+</html>
