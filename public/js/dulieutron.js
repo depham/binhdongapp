@@ -154,6 +154,7 @@ function updateTable(page, conditions) {
       .then(response => response.json())
       .then(data => {
         const totalRows = data.result;
+        console.log(totalRows);
         return totalRows;
       })
       .catch(error => {
