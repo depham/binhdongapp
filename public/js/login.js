@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         
   // Gửi yêu cầu POST sử dụng fetch
-        fetch('/login', {
+        fetch('https://binhdongfactorygapp.vercel.app/login', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(responseData);
             console.log(data);
         // Chuyển hướng đến đường dẫn /dulieutron
-            window.location.replace('/dulieutron');
+            window.location.replace('https://binhdongfactorygapp.vercel.app/dulieutron');
         })
         .catch(function (error) {
         // Xử lý lỗi
