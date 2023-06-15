@@ -189,11 +189,19 @@ DuLieuTron.getByConditions = function(conditions, page, result) {
 
     console.log(values);
     console.log(query);
+    
     db.query(query, values, function(err, dulieutron) {
       if (err) {
+        console.error(err);
         result(null);
       } else {
-        result(dulieutron);
+        try {
+          var jsonResult = JSON.stringify(dulieutron);
+          result(jsonResult);
+        } catch (error) {
+          console.error(error);
+          result(null);
+        }
       }
     });
   };

@@ -6,7 +6,7 @@ function checkAuthentication(req, res, next) {
     next();
   } else {
     // Phiên đăng nhập đã hết hạn hoặc không tồn tại
-    res.redirect('https://factory-binhdong.vercel.app/'); // Chuyển hướng người dùng đến trang đăng nhập
+    res.redirect('https://factory-binhdong.vercel.app'); // Chuyển hướng người dùng đến trang đăng nhập
   }
 }
 
