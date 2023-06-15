@@ -36,7 +36,7 @@ const DuLieuTron = function(dulieutron){
 }
 
 
-DuLieuTron.get_all = function( result){
+DuLieuTron.get_all = function(result){
     db.query("SELECT *FROM dulieutronbd", function(err, dulieutron){
 
       if(err){

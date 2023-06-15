@@ -12,9 +12,8 @@ exports.dulieutron = function(req, res){
 }
 
 exports.get_list_dulieutron = function(req, res){
-    var currentPage = req.query.page || 1;
-
-    DuLieuTron.get_all(currentPage, function(data){
+    
+    DuLieuTron.get_all(function(data){
         res.send({result: data})
     });
 };
