@@ -6,7 +6,7 @@ module.exports = function(router){
 
     router.get("/dulieutron", middleware.checkAuthentication, dulieutronController.dulieutron);
 
-    router.get("/dulieutron/list", middleware.checkAuthentication, dulieutronController.get_list_dulieutron);
+    router.get("/dulieutron/list", dulieutronController.get_list_dulieutron);
 
     router.get("/dulieutron/totalrow", middleware.checkAuthentication, dulieutronController.get_total_row);
 
