@@ -33,7 +33,7 @@ function updateTable(page, conditions) {
 
             // Cột Giờ
             const timeCell = document.createElement('td');
-            var dateObj = new Date(item.Time);
+            var dateObj = new Date(item.DateCreate);
             console.log(dateObj);
             var hours = dateObj.getHours();
             var minutes = dateObj.getMinutes();
@@ -44,7 +44,7 @@ function updateTable(page, conditions) {
 
             // Cột Ngày
             const dateCell = document.createElement('td');
-            const date = new Date(item.Date);
+            const date = new Date(item.DateCreate);
             const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
             const formattedDate = date.toLocaleDateString('en-GB', options); // 'en-GB' để đảm bảo định dạng ngày/tháng/năm là dd/MM/yyyy
             dateCell.textContent = formattedDate;
