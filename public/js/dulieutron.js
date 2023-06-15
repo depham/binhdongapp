@@ -36,7 +36,7 @@ function updateTable(page, conditions) {
             const dateObj = new Date(item.Time);
 
             // Chuyển đổi múi giờ từ múi giờ máy chủ sang múi giờ người dùng
-            const userTimeObj = new Date(dateObj.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" }));
+            const userTimeObj = new Date(dateObj.toLocaleString("en-US", { timeZone: "GMT+0700" }));
 
             const hours = userTimeObj.getHours();
             const minutes = userTimeObj.getMinutes();
@@ -49,7 +49,7 @@ function updateTable(page, conditions) {
             const date = new Date(item.Date);
 
             // Chuyển đổi múi giờ từ múi giờ máy chủ sang múi giờ người dùng
-            const userDateObj = new Date(date.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh" }));
+            const userDateObj = new Date(date.toLocaleString("en-US", { timeZone: "GMT+0700" }));
 
             const formattedDate = userDateObj.toLocaleDateString([], { year: 'numeric', month: '2-digit', day: '2-digit' });
             dateCell.textContent = formattedDate;
