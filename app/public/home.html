@@ -52,7 +52,7 @@
       .then(response => response.json())
       .then(data => {
     const result = data.dulieutron;
-    console.log(result);
+    //console.log(result);
     if (Array.isArray(result)) {
       const dataList = document.getElementById('dataList');
       result.forEach((item, index) => {
@@ -74,7 +74,7 @@
             // Cột Giờ
             const timeCell = document.createElement('td');
             var dateObj = new Date(item.Time);
-            console.log(dateObj);
+            console.log(item.Time);
             var hours = dateObj.getHours();
             var minutes = dateObj.getMinutes();
             var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
