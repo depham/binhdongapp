@@ -13,8 +13,8 @@ exports.dulieutron = function(req, res){
 
 exports.get_list_dulieutron = function(req, res){
     
-    DuLieuTron.get_all(function(data){
-        res.send({result: data})
+    DuLieuTron.get_all(function(dulieutron){
+        res.send({result: dulieutron})
     });
 };
 
