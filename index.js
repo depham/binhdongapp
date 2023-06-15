@@ -12,7 +12,7 @@ app.use(session({
     secret: 'my-secret-key',
     resave: false, 
     saveUninitialized: false,
-    cookie: { maxAge: 10 * 60 * 1000 } // 10 phút
+    cookie: { maxAge: 100 * 60 * 1000 } // 100 phút
 }));
 
 app.use(express.static('public'));
