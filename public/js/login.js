@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
         
   // Gửi yêu cầu POST sử dụng fetch
-        fetch('https://binhdongfactorygapp.vercel.app/login', {
+        fetch('https://factory-binhdong.vercel.app/login', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
