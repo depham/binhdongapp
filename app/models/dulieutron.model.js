@@ -100,7 +100,7 @@ DuLieuTron.getTotalRowsByConditions = function(conditions, result) {
   
     db.query(query, values, function(err, countResult) {
       if (err) {
-        result(err);
+        
         result(0);
       }
   
