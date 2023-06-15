@@ -19,6 +19,7 @@ app.use(express.static('public'));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.set('public', path.join(__dirname, 'public'));
+
 require('./app/routers/home.router')(app);
 require('./app/routers/dulieutron.router')(app);
 
