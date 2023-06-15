@@ -36,11 +36,11 @@ function updateTable(page, conditions) {
             const dateObj = new Date(item.Time);
 
             // Chuyển đổi múi giờ từ múi giờ máy chủ sang múi giờ người dùng
-            const userTimeObj = new Date(dateObj.toLocaleString("en-US", { timeZone: "GMT+0700" }));
+            const userTimeObj = new Date(dateObj.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh", timeZoneName: "short" }));
 
             const hours = userTimeObj.getHours();
             const minutes = userTimeObj.getMinutes();
-            const formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+            const formattedTime = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0');
             timeCell.textContent = formattedTime;
             row.appendChild(timeCell);
 
@@ -49,11 +49,12 @@ function updateTable(page, conditions) {
             const date = new Date(item.Date);
 
             // Chuyển đổi múi giờ từ múi giờ máy chủ sang múi giờ người dùng
-            const userDateObj = new Date(date.toLocaleString("en-US", { timeZone: "GMT+0700" }));
+            const userDateObj = new Date(date.toLocaleString("en-US", { timeZone: "Asia/Ho_Chi_Minh", timeZoneName: "short" }));
 
-            const formattedDate = userDateObj.toLocaleDateString([], { year: 'numeric', month: '2-digit', day: '2-digit' });
+            const formattedDate = userDateObj.toLocaleDateString("en-US", { year: 'numeric', month: '2-digit', day: '2-digit' });
             dateCell.textContent = formattedDate;
             row.appendChild(dateCell);
+
 
             // Cột MachineID
             const idMachineCell = document.createElement('td');
