@@ -36,18 +36,18 @@ const DuLieuTron = function(dulieutron){
 }
 
 
-DuLieuTron.get_all = function(page, result){
-    var perPage = 50;
-    var offset = (page - 1) * perPage;
+DuLieuTron.get_all = function( result){
+    db.query("SELECT *FROM dulieutronbd", function(err, dulieutron){
 
-    db.query("SELECT * FROM dulieutronbd ORDER BY Date DESC LIMIT ? OFFSET ?", [perPage, offset], function(err, dulieutron){
-        if(err){
-            result(err);
-            return;
-        } else {
-            result(dulieutron);
-        }
-    });
+      if(err){
+          result(err);
+          return;
+      }
+      else {
+          result(dulieutron);
+      }
+      
+  });
 };
 
 DuLieuTron.get_totalRows = function(result) {
