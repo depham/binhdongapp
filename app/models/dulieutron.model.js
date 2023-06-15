@@ -41,7 +41,7 @@ DuLieuTron.get_all = function(page, result){
     var perPage = 50;
     var offset = (page - 1) * perPage;
 
-    db.query("SELECT * FROM dulieutron ORDER BY Date DESC LIMIT ? OFFSET ?", [perPage, offset], function(err, dulieutron){
+    db.query("SELECT * FROM dulieutronbd ORDER BY Date DESC LIMIT ? OFFSET ?", [perPage, offset], function(err, dulieutron){
         if(err){
             result(err);
             return;
@@ -53,7 +53,7 @@ DuLieuTron.get_all = function(page, result){
 
 DuLieuTron.get_totalRows = function(result) {
     // Truy vấn để lấy tổng số dòng dữ liệu
-    db.query("SELECT COUNT(*) AS totalRows FROM dulieutron", function(err, countResult) {
+    db.query("SELECT COUNT(*) AS totalRows FROM dulieutronbd", function(err, countResult) {
         if (err) {
             result(err);
             return;
@@ -67,7 +67,7 @@ DuLieuTron.get_totalRows = function(result) {
 };
 
 DuLieuTron.getTotalRowsByConditions = function(conditions, result) {
-    var query = "SELECT COUNT(*) AS totalRows FROM dulieutron";
+    var query = "SELECT COUNT(*) AS totalRows FROM dulieutronbd";
     var params = [];
     var values = [];
   
@@ -117,7 +117,7 @@ DuLieuTron.getPage = function(page, result){
     const limit = 50;
     const offset = (page - 1) * limit;
 
-    const query = `SELECT * FROM dulieutron ORDER BY Date DESC LIMIT ${limit} OFFSET ${offset}`;
+    const query = `SELECT * FROM dulieutronbd ORDER BY Date DESC LIMIT ${limit} OFFSET ${offset}`;
 
     //console.log(page);
     db.query(query, (err, dulieutron) => {
@@ -135,7 +135,7 @@ DuLieuTron.getPage = function(page, result){
 
 DuLieuTron.getByID = function(id, result){
 
-    db.query("SELECT *FROM dulieutron WHERE MachineID = ?", id, function(err, dulieutron){
+    db.query("SELECT *FROM dulieutronbd WHERE MachineID = ?", id, function(err, dulieutron){
 
         if(err){
             result(null);
@@ -151,7 +151,7 @@ DuLieuTron.getByConditions = function(conditions, page, result) {
     var perPage = 50;
     var offset = (page - 1) * perPage;
     
-    var query = "SELECT * FROM dulieutron";
+    var query = "SELECT * FROM dulieutronbd";
     var params = [];
     var values = [];
     
@@ -199,7 +199,7 @@ DuLieuTron.getByConditions = function(conditions, page, result) {
   };
 
 DuLieuTron.getExcelByConditions = function(conditions, result) {
-    var query = "SELECT * FROM dulieutron";
+    var query = "SELECT * FROM dulieutronbd";
     var params = [];
     var values = [];
   
@@ -257,7 +257,7 @@ DuLieuTron.getExcelByConditions = function(conditions, result) {
 
 DuLieuTron.create = function(data, result){
     data.DateCreate = new Date();
-    db.query("INSERT INTO dulieutron SET ?", data, function(err, dulieutron){
+    db.query("INSERT INTO dulieutronbd SET ?", data, function(err, dulieutron){
         if(err){
             result(null);
         }
@@ -268,7 +268,7 @@ DuLieuTron.create = function(data, result){
 }
 
 DuLieuTron.remove = function(id, result){
-    db.query("DELETE FROM dulieutron WHERE DuLieuTronID = ?", id, function(err, dulieutron){
+    db.query("DELETE FROM dulieutronbd WHERE DuLieuTronID = ?", id, function(err, dulieutron){
         if(err){
             result(null);
         }
@@ -279,7 +279,7 @@ DuLieuTron.remove = function(id, result){
 }
 
 DuLieuTron.update = function(b, result){
-    db.query("UPDATE dulieutron SET DuLieuTronID = ?, Time = ?, Date = ?, MachineID = ?, NameProduct = ?, STTM = ?, M_CE1 = ?, PV_CE1 = ?, M_CE2 = ?, PV_CE2, M_CE3 = ?, PV_CE3, PV_PG = ? WHERE id = ?", 
+    db.query("UPDATE dulieutronbd SET DuLieuTronID = ?, Time = ?, Date = ?, MachineID = ?, NameProduct = ?, STTM = ?, M_CE1 = ?, PV_CE1 = ?, M_CE2 = ?, PV_CE2, M_CE3 = ?, PV_CE3, PV_PG = ? WHERE id = ?", 
     [b.DuLieuTronID, b.Time, b.Date, b.MachineID, b.NameProduct, b.STTM, b.M_CE1, b.PV_CE1, b.M_CE2, b.PV_CE2, b.M_CE3, b.PV_CE3. b.PV_PG], function(err, dulieutron){
         if(err){
             result(null);
