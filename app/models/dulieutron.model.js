@@ -195,13 +195,7 @@ DuLieuTron.getByConditions = function(conditions, page, result) {
         console.error(err);
         result(null);
       } else {
-        try {
-          var jsonResult = JSON.stringify(dulieutron);
-          result(jsonResult);
-        } catch (error) {
-          console.error(error);
-          result(null);
-        }
+        result(dulieutron);
       }
     });
   };
