@@ -7,7 +7,7 @@ exports.dulieutron = function(req, res){
         res.render('index', { username: req.session.user.username });
       } else {
         // Người dùng chưa đăng nhập, chuyển hướng đến trang đăng nhập
-        res.redirect('https://binhdongfactorygapp.vercel.app/');
+        res.redirect('https://factory-binhdong.vercel.app/');
       }
 }
 
