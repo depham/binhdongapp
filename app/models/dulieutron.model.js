@@ -100,8 +100,8 @@ DuLieuTron.getTotalRowsByConditions = function(conditions, result) {
   
     db.query(query, values, function(err, countResult) {
       if (err) {
-        
-        result(0);
+        result(null);
+        return;
       }
   
       var totalRows = countResult[0].totalRows;
@@ -189,10 +189,8 @@ DuLieuTron.getByConditions = function(conditions, page, result) {
 
     console.log(values);
     console.log(query);
-    
     db.query(query, values, function(err, dulieutron) {
       if (err) {
-        console.error(err);
         result(null);
       } else {
         result(dulieutron);
@@ -253,7 +251,6 @@ DuLieuTron.getExcelByConditions = function(conditions, result) {
         //result(dulieutron);
 
         //});
-        result(dulieutron);
       }
     });
   };
