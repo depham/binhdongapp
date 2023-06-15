@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log(responseData);
             console.log(data);
         // Chuyển hướng đến đường dẫn /dulieutron
-            window.location.replace('https://binhdongfactorygapp.vercel.app/dulieutron');
+            window.location.replace('https://factory-binhdong.vercel.app/dulieutron');
         })
         .catch(function (error) {
         // Xử lý lỗi
