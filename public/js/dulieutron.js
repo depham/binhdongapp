@@ -168,7 +168,7 @@ function updateTable(page, conditions) {
 function getConditionsFromInputs() {
   const selectedMachine = document.getElementById("machine-select").value;
   const fromDate = document.getElementById("from-date").value;
-  const productName = document.getElementById("product-name").value;
+  const productName = document.getElementById("nameproduct-select").value;
   const toDate = document.getElementById("to-date").value;
 
   return {
