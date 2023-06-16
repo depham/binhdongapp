@@ -74,7 +74,7 @@
             // Cột Giờ
             const timeCell = document.createElement('td');
             const dateObj = new Date(item.Time);
-            dateObj.setHours(dateObj.getHours() - 7); // Điều chỉnh múi giờ theo GMT+7
+            dateObj.setHours(dateObj.getHours() + 7); // Điều chỉnh múi giờ theo GMT+7
 
             const hours = dateObj.getHours();
             console.log(hours);
