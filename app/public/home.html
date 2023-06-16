@@ -73,11 +73,12 @@
 
             // Cột Giờ
             const timeCell = document.createElement('td');
-            var dateObj = new Date(item.Time);
-            console.log(item.Time);
-            var hours = dateObj.getHours();
-            var minutes = dateObj.getMinutes();
-            var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+            const dateObj = new Date(item.Time);
+            dateObj.setHours(dateObj.getHours()); // Điều chỉnh múi giờ theo GMT+7
+
+            const hours = dateObj.getHours();
+            const minutes = dateObj.getMinutes();
+            const formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
             timeCell.textContent = formattedTime;
             row.appendChild(timeCell);
 
