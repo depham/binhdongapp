@@ -37,7 +37,7 @@ function updateTable(page, conditions) {
             dateObj.setHours(dateObj.getHours() - 7); // Điều chỉnh múi giờ theo GMT+7
 
             const hours = dateObj.getHours();
-            console.log(hours);
+            //console.log(hours);
             const minutes = dateObj.getMinutes();
             const formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
             timeCell.textContent = formattedTime;
