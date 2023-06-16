@@ -37,7 +37,7 @@ const DuLieuTron = function(dulieutron){
 
 
 DuLieuTron.get_all = function(result){
-    db.query("SELECT *FROM dulieutronbd", function(err, dulieutron){
+  db.query("SELECT *FROM dulieutronbd", function(err, dulieutron){
 
       if(err){
           result(err);
@@ -48,7 +48,8 @@ DuLieuTron.get_all = function(result){
       }
       
   });
-};
+  
+}
 
 DuLieuTron.get_totalRows = function(result) {
     // Truy vấn để lấy tổng số dòng dữ liệu

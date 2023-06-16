@@ -12,11 +12,12 @@ exports.dulieutron = function(req, res){
 }
 
 exports.get_list_dulieutron = function(req, res){
-    
-    DuLieuTron.get_all(function(dulieutron){
-        res.send({result: dulieutron})
+   
+    DuLieuTron.get_all(function(data){
+        res.send({result: data})
     });
-};
+
+}
 
 exports.get_total_row = function(req, res){
     DuLieuTron.get_totalRows(function(data){

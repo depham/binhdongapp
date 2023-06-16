@@ -51,7 +51,7 @@
     fetch('https://factory-binhdong.vercel.app/dulieutron/list')
       .then(response => response.json())
       .then(data => {
-    const result = data.dulieutron;
+    const result = data.result;
     //console.log(result);
     if (Array.isArray(result)) {
       const dataList = document.getElementById('dataList');
