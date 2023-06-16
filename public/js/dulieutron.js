@@ -33,18 +33,21 @@ function updateTable(page, conditions) {
 
             // Cột Giờ
             const timeCell = document.createElement('td');
-            var dateObj = new Date(item.Time);
-            console.log(dateObj);
-            var hours = dateObj.getHours();
-            var minutes = dateObj.getMinutes();
-            var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
+            const dateObj = new Date(item.Time);
+            dateObj.setHours(dateObj.getHours() - 7); // Điều chỉnh múi giờ theo GMT+7
+
+            const hours = dateObj.getHours();
+            console.log(hours);
+            const minutes = dateObj.getMinutes();
+            const formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ' ' + (hours >= 12 ? 'PM' : 'AM');
             timeCell.textContent = formattedTime;
             row.appendChild(timeCell);
-            //console.log(formattedTime); 
+
             // Cột Ngày
             const dateCell = document.createElement('td');
             const date = new Date(item.Date);
-            const formattedDate = date.toLocaleDateString([], { year: 'numeric', month: '2-digit', day: '2-digit' });
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            const formattedDate = date.toLocaleDateString('en-GB', options); // 'en-GB' để đảm bảo định dạng ngày/tháng/năm là dd/MM/yyyy
             dateCell.textContent = formattedDate;
             row.appendChild(dateCell);
             
