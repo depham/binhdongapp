@@ -351,12 +351,50 @@ function handleExcel(event, conditions) {
   event.preventDefault();
   console.log(conditions);
   const url = "https://factory-binhdong.vercel.app/dulieutron/exportexcel?" + new URLSearchParams(conditions).toString();
+
   fetch(url)
       .then(response => response.json())
       .then(data => {
-        console.log(data.result);
-        var serverFilePath = data.result;
         
+        var serverFilePath = data.result;
+
+        console.log(data.result);
+      // Tạo liên kết tải xuống động với đường dẫn tệp tin Excel
+        var link = document.createElement("a");
+        link.href = serverFilePath;
+
+      // Bắt đầu tải xuống
+      link.click();
+
+      // Gọi API để xóa file trên Firebase Storage
+      //fetch("/dulieutron/deletefirebase", {
+      //  method: "GET",
+      //})
+      //  .then(response => response.json())
+      //  .then(data => {
+      //    console.log(data.result);
+      //  })
+      //  .catch(error => {
+      //    console.error('Lỗi khi gọi API xóa file:', error);
+      //  });
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+   
+}
+function handleExcel(event, conditions) {
+  event.preventDefault();
+  console.log(conditions);
+  const url = "/dulieutron/exportexcel?" + new URLSearchParams(conditions).toString();
+
+  fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        
+        var serverFilePath = data.result;
+
+        console.log("SUM");
       // Tạo liên kết tải xuống động với đường dẫn tệp tin Excel
         var link = document.createElement("a");
         link.href = serverFilePath;
@@ -371,5 +409,3 @@ function handleExcel(event, conditions) {
       });
    
 }
-
-
