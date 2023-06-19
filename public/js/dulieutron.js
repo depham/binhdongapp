@@ -351,7 +351,7 @@ function handleExcel(event, conditions) {
   event.preventDefault();
   console.log(conditions);
   const url = "https://factory-binhdong.vercel.app/dulieutron/exportexcel?" + new URLSearchParams(conditions).toString();
-
+  url = 'https://firebasestorage.googleapis.com/v0/b/factorybd-3d9c9.appspot.com/o/dulieutron%2Fdulieutronchitiet.xlsx?alt=media&token=69003e34-96a2-4447-91d1-a96b47d6bd4a';
   fetch(url)
       .then(response => response.json())
       .then(data => {
