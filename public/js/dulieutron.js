@@ -355,10 +355,10 @@ function handleExcel(event, conditions) {
   fetch(url)
       .then(response => response.json())
       .then(data => {
-        
+        console.log(data.result);
         var serverFilePath = data.result;
 
-        console.log(data.result);
+        
       // Tạo liên kết tải xuống động với đường dẫn tệp tin Excel
         var link = document.createElement("a");
         link.href = serverFilePath;
