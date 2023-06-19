@@ -25,4 +25,5 @@ module.exports = function(router){
     router.put("/dulieutron/update", middleware.checkAuthentication, dulieutronController.update_dulieutron);
 
     router.get("/dulieutron/exportexcel", dulieutronController.get_excel_ByCondition);
+
 }
