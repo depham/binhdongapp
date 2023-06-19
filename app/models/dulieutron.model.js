@@ -1,5 +1,5 @@
 const db = require('../common/connect');
-const exceljs = require('exceljs');
+const ExcelJS = require('exceljs');
 const XLSX = require("xlsx");
 
 const { getStorage, ref, uploadBytes, getDownloadURL } = require("@firebase/storage");
