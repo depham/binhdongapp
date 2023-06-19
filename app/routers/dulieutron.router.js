@@ -8,22 +8,20 @@ module.exports = function(router){
 
     router.get("/dulieutron/list", dulieutronController.get_list_dulieutron);
 
-    router.get("/dulieutron/totalrow", dulieutronController.get_total_row);
+    router.get("/dulieutron/totalrow", middleware.checkAuthentication, dulieutronController.get_total_row);
 
     router.get("/dulieutron/totalrowbycondition", dulieutronController.get_total_row_ByCondition);
 
-    router.get("/dulieutron/page/:page", dulieutronController.get_page_dulieutron);
+    router.get("/dulieutron/page/:page", middleware.checkAuthentication, dulieutronController.get_page_dulieutron);
 
-    router.get("/dulieutron/detail/:id", dulieutronController.detail);
+    router.get("/dulieutron/detail/:id", middleware.checkAuthentication, dulieutronController.detail);
 
     router.get("/dulieutron/detailbycondition/", dulieutronController.detail_ByCondition);
 
     router.post("/dulieutron/add", dulieutronController.add_dulieutron);
 
-    //router.delete("/dulieutron/delete/:id", middleware.checkAuthentication, dulieutronController.remove_dulieutron);
+    router.put("/dulieutron/update", middleware.checkAuthentication, dulieutronController.update_dulieutron);
 
-    router.put("/dulieutron/update", dulieutronController.update_dulieutron);
-
-    router.get("/dulieutron/exportexcel", dulieutronController.get_excel_ByCondition);
+    router.get("/dulieutron/exportexcel", middleware.checkAuthentication, dulieutronController.get_excel_ByCondition);
 
 }
