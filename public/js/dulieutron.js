@@ -148,6 +148,12 @@ function updateTable(page, conditions) {
       const conditions = getConditionsFromInputs();
       handleExcel(event, conditions);
     });
+
+    var searchButton = document.getElementById("search-button");
+    searchButton.addEventListener("click", function(event) {
+      const conditions = getConditionsFromInputs();
+      handleSearch(event, conditions);
+    });
   });
   function getTotalRows(conditions) {
     const url = "https://factory-binhdong.vercel.app/dulieutron/totalrowbycondition?" + new URLSearchParams(conditions);
@@ -343,9 +349,6 @@ function handleSearch(event) {
       console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
     });
 }
-
-var searchButton = document.getElementById("search-button");
-searchButton.addEventListener("click", handleSearch);
 
 
 function handleExcel(event, conditions) {
