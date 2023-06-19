@@ -76,10 +76,16 @@ exports.get_excel_ByCondition = function(req, res) {
       NameProduct: req.query.productName,
       ToDate: req.query.toDate
     };
-    DuLieuTron.getExcelByConditions(conditions, function(dulieutron) {
-        res.send({ result: dulieutron});
-    });
-  };
+    DuLieuTron.getExcelByConditions(conditions, function(error, callback) {
+        if (error) {
+          console.error('Lỗi khi lấy dữ liệu Excel:', error);
+          res.status(500).send({ error: 'Lỗi khi lấy dữ liệu Excel' });
+        } else {
+          console.log(callback);
+          res.send({ result: callback });
+        }
+      });
+    };
 
 exports.add_dulieutron = function(req, res){
     var data = req.body;

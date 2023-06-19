@@ -350,23 +350,23 @@ searchButton.addEventListener("click", handleSearch);
 function handleExcel(event, conditions) {
   event.preventDefault();
   console.log(conditions);
-  const url = "https://factory-binhdong.vercel.app/dulieutron/exportexcel?" + new URLSearchParams(conditions).toString();
+  const url = "/dulieutron/exportexcel?" + new URLSearchParams(conditions).toString();
 
   fetch(url)
       .then(response => response.json())
       .then(data => {
         
-        //var serverFilePath = 'https://binhdongfactorygapp.vercel.app/storage/excel_file.xlsx';
+        var serverFilePath = data.result;
 
-        //console.log(serverFilePath);
+        console.log(data.result);
       // Tạo liên kết tải xuống động với đường dẫn tệp tin Excel
-        //var link = document.createElement("a");
-        //link.href = serverFilePath;
-        //link.download = "custom_filename.xlsx";
+        var link = document.createElement("a");
+        link.href = serverFilePath;
 
       // Bắt đầu tải xuống
-      //link.click();
+      link.click();
 
+      
       })
       .catch(error => {
         console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
