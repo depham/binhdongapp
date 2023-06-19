@@ -229,7 +229,7 @@ DuLieuTron.getByConditions = function(conditions, page, result) {
   
     db.query(query, values, async function(err, dulieutron) {
       if (err) {
-        callback(err);
+        //callback(err);
       } else {
         try{
             // Đọc file Excel sẵn có từ Firebase Storage
@@ -407,17 +407,17 @@ DuLieuTron.getByConditions = function(conditions, page, result) {
               })
               .catch((error) => {
                 console.error('Lỗi khi lấy đường dẫn tải xuống file Excel:', error);
-                  callback(error);
+                  //callback(error);
               });
           })
           .catch((error) => {
             console.error('Lỗi khi tải file Excel lên Firebase Storage:', error);
-            callback(error);
+            //callback(error);
           });
         }
         catch (error) {
           console.error('Lỗi khi thực hiện tác vụ đọc, cập nhật file Excel:', error);
-          callback(error);
+          //callback(error);
         }
 
       }
