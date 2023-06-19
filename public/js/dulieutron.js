@@ -356,7 +356,9 @@ function handleExcel(event, conditions) {
   fetch(url)
       .then(response => response.json())
       .then(data => {
-        
+        console.log(data);
+        console.log(data.callback);
+        console.log(data.result);
         var serverFilePath = data.result;
 
         console.log("Exel");

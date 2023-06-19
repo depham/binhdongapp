@@ -229,7 +229,7 @@ DuLieuTron.getByConditions = function(conditions, page, result) {
   
     db.query(query, values, async function(err, dulieutron) {
       if (err) {
-        //callback(err);
+        callback(err);
       } else {
         try{
             // Đọc file Excel sẵn có từ Firebase Storage
