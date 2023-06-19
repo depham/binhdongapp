@@ -24,4 +24,6 @@ module.exports = function(router){
 
     router.get("/dulieutron/exportexcel", dulieutronController.get_excel_ByCondition);
 
+    router.get("/dulieutron/exportexcelsum", dulieutronController.get_excelsum_ByCondition);
+
 }

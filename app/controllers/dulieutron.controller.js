@@ -87,6 +87,24 @@ exports.get_excel_ByCondition = function(req, res) {
       });
     };
 
+exports.get_excelsum_ByCondition = function(req, res) {
+    var conditions = {
+        MachineID: req.query.machine,
+        FromDate: req.query.fromDate,
+        NameProduct: req.query.productName,
+        ToDate: req.query.toDate
+    };
+    DuLieuTron.getExcelSumByConditions(conditions, function(error, callback) {
+        if (error) {
+            console.error('Lỗi khi lấy dữ liệu Excel:', error);
+            res.status(500).send({ error: 'Lỗi khi lấy dữ liệu Excel' });
+        } else {
+            console.log(callback);
+            res.send({ result: callback });
+        }
+    });
+};
+
 exports.add_dulieutron = function(req, res){
     var data = req.body;
     DuLieuTron.create(data, function(respnse){

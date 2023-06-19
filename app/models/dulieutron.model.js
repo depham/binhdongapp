@@ -436,6 +436,338 @@ function getExcelColumnLetter(columnIndex) {
   return columnLetter;
 }
 
+
+DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
+  var query = "SELECT * FROM dulieutronbd";
+  var params = [];
+  var values = [];
+
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
+      }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
+      }
+    }
+  }
+
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
+
+  query += " ORDER BY Date DESC";
+
+  db.query(query, values, async function(err, dulieutron) {
+    if (err) {
+      //callback(err);
+    } else {
+      try{
+          // Đọc file Excel sẵn có từ Firebase Storage
+          const storageRef = ref(storage, 'BaoCao/baocaotongvattu.xlsx');
+          const fileSnapshot = await getDownloadURL(storageRef);
+          const response = await fetch(fileSnapshot);
+          const fileBuffer = await response.arrayBuffer();
+
+          const workbook = new ExcelJS.Workbook();
+          await workbook.xlsx.load(fileBuffer);
+
+          const worksheet = workbook.getWorksheet('Sheet 1');
+
+          // Xoá dữ liệu từ cột C đến F, bắt đầu từ hàng 7
+          const startRowDel = 7;
+          const endRowDel = worksheet.rowCount;
+          const startColumnDel = 3; // Cột C
+          const endColumnDel = 6; // Cột F
+
+          for (let rowNumberdel = startRowDel; rowNumberdel <= endRowDel; rowNumberdel++) {
+            for (let columnNumberDel = startColumnDel; columnNumberDel <= endColumnDel; columnNumberDel++) {
+              const cell = worksheet.getCell(rowNumberdel, columnNumberDel);
+              cell.value = null; // Xoá giá trị của từng ô
+            }
+          }
+          const updatedWorkbookBufferDel = await workbook.xlsx.writeBuffer();
+          await uploadBytes(storageRef, updatedWorkbookBufferDel);
+
+          // Tính tổng các giá trị từ cột PV_CE1 của dulieutron
+          const sumPV_CE1 = dulieutron.reduce((total, row) => total + (row.PV_CE1 || 0), 0);
+          console.log(sumPV_CE1);
+          // Cập nhật giá trị tổng vào ô C7
+          const sumCell_PV_CE1 = worksheet.getCell('C7');
+          sumCell_PV_CE1.value = sumPV_CE1;
+          // Định dạng ô C7 thành số hàng nghìn
+          sumCell_PV_CE1.numFmt = '#,##0';
+
+          // Tính tổng các giá trị từ cột PV_CE2 của dulieutron
+          const sumPV_CE2 = dulieutron.reduce((total, row) => total + (row.PV_CE2 || 0), 0);
+          console.log(sumPV_CE2);
+          // Cập nhật giá trị tổng vào ô C8
+          const sumCell_PV_CE2 = worksheet.getCell('C8');
+          sumCell_PV_CE2.value = sumPV_CE2;
+          // Định dạng ô C7 thành số hàng nghìn
+          sumCell_PV_CE2.numFmt = '#,##0';
+
+          // Tính tổng các giá trị từ cột PV_CE3 của dulieutron
+          const sumPV_CE3 = dulieutron.reduce((total, row) => total + (row.PV_CE3 || 0), 0);
+          console.log(sumPV_CE3);
+          // Cập nhật giá trị tổng vào ô C9
+          const sumCell_PV_CE3 = worksheet.getCell('C9');
+          sumCell_PV_CE3.value = sumPV_CE3;
+          // Định dạng ô C7 thành số hàng nghìn
+          sumCell_PV_CE3.numFmt = '#,##0';
+
+          // Tính tổng các giá trị từ cột PV_PG của dulieutron
+          const sumPV_PG = dulieutron.reduce((total, row) => total + (row.PV_PG || 0), 0);
+          console.log(sumPV_PG);
+          // Cập nhật giá trị tổng vào ô C9
+          const sumCell_PV_PG = worksheet.getCell('C10');
+          sumCell_PV_PG.value = sumPV_PG;
+          // Định dạng ô C7 thành số hàng nghìn
+          sumCell_PV_PG.numFmt = '#,##0';
+
+          //cột D
+          // Tính tổng các giá trị từ cột PV_CE1 của dulieutron
+          const sumM_CE1 = dulieutron.reduce((total, row) => total + (row.M_CE1 || 0), 0);
+          console.log(sumM_CE1);
+          // Cập nhật giá trị tổng vào ô C7
+          const sumCell_M_CE1 = worksheet.getCell('D7');
+          sumCell_M_CE1.value = sumM_CE1;
+          // Định dạng ô C7 thành số hàng nghìn
+          sumCell_M_CE1.numFmt = '#,##0';
+
+          // Tính tổng các giá trị từ cột PV_CE2 của dulieutron
+          const sumM_CE2 = dulieutron.reduce((total, row) => total + (row.M_CE2 || 0), 0);
+          console.log(sumM_CE2);
+          // Cập nhật giá trị tổng vào ô C8
+          const sumCell_M_CE2 = worksheet.getCell('D8');
+          sumCell_M_CE2.value = sumM_CE2;
+          // Định dạng ô C7 thành số hàng nghìn
+          sumCell_M_CE2.numFmt = '#,##0';
+
+          // Tính tổng các giá trị từ cột PV_CE3 của dulieutron
+          const sumM_CE3 = dulieutron.reduce((total, row) => total + (row.M_CE3 || 0), 0);
+          console.log(sumM_CE3);
+          // Cập nhật giá trị tổng vào ô C9
+          const sumCell_M_CE3 = worksheet.getCell('D9');
+          sumCell_M_CE3.value = sumM_CE3;
+          // Định dạng ô C7 thành số hàng nghìn
+          sumCell_M_CE3.numFmt = '#,##0';
+
+          // Tính tổng các giá trị từ cột PV_CE3 của dulieutron
+          const sumM_PG = dulieutron.reduce((total, row) => total + (row.PV_PG || 0), 0);
+          console.log(sumM_PG);
+          // Cập nhật giá trị tổng vào ô C9
+          const sumCell_M_PG = worksheet.getCell('D10');
+          sumCell_M_PG.value = sumM_PG;
+          // Định dạng ô C7 thành số hàng nghìn
+          sumCell_M_PG.numFmt = '#,##0';
+
+          // Sai số Kg
+          // Tính sai số CE1
+          const errorValue_CE1 = sumPV_CE1 - sumM_CE1; 
+          //Cập nhật giá trị vào ô E7
+          const errorCell_CE1 = worksheet.getCell('E7');
+          errorCell_CE1.value = errorValue_CE1;
+          // Định dạng ô E7 thành số hàng nghìn
+          errorCell_CE1.numFmt = '#,##0';
+
+          // Tính sai số CE2
+          const errorValue_CE2 = sumPV_CE2 - sumM_CE2; 
+          //Cập nhật giá trị vào ô E7
+          const errorCell_CE2 = worksheet.getCell('E8');
+          errorCell_CE2.value = errorValue_CE2;
+          // Định dạng ô E7 thành số hàng nghìn
+          errorCell_CE2.numFmt = '#,##0';
+
+          // Tính sai số CE3
+          const errorValue_CE3 = sumPV_CE3 - sumM_CE3; 
+          //Cập nhật giá trị vào ô E7
+          const errorCell_CE3 = worksheet.getCell('E9');
+          errorCell_CE3.value = errorValue_CE3;
+          // Định dạng ô E7 thành số hàng nghìn
+          errorCell_CE3.numFmt = '#,##0';
+
+          // Tính sai số PG
+          const errorValue_PG = sumPV_PG - sumPV_PG; 
+          //Cập nhật giá trị vào ô E7
+          const errorCell_PG = worksheet.getCell('E10');
+          errorCell_PG.value = errorValue_PG;
+          // Định dạng ô E7 thành số hàng nghìn
+          errorCell_PG.numFmt = '#,##0';
+
+          // Kiểm tra nếu sumM_CE1 và errorValue_CE1 đều bằng 0
+          if (sumM_CE1 === 0 && errorValue_CE1 === 0) {
+            // Gán giá trị phần trăm sai số là 0
+            const roundedPercentageError_CE1 = 0;
+            
+            // Cập nhật giá trị phần trăm sai số vào ô F
+            const errorCell_percent_CE1 = worksheet.getCell('F' + 7);
+            errorCell_percent_CE1.value = roundedPercentageError_CE1;
+            
+            
+          } else {
+            // Nếu sumM_CE1 và errorValue_CE1 không bằng 0, tiếp tục tính toán phần trăm sai số như trước đó
+            const percentageError_CE1 = (errorValue_CE1 / sumM_CE1) * 100;
+            const roundedPercentageError_CE1 = Math.round(percentageError_CE1 * 100) / 100;
+            
+            // Cập nhật giá trị phần trăm sai số vào ô F
+            const errorCell_percent_CE1 = worksheet.getCell('F' + 7);
+            errorCell_percent_CE1.value = roundedPercentageError_CE1;
+            errorCell_percent_CE1.numFmt = '0.00';
+            
+          }
+          
+          
+          // Kiểm tra nếu sumM_CE1 và errorValue_CE1 đều bằng 0
+          if (sumM_CE2 === 0 && errorValue_CE2 === 0) {
+            // Gán giá trị phần trăm sai số là 0
+            const roundedPercentageError_CE2 = 0;
+            
+            // Cập nhật giá trị phần trăm sai số vào ô F
+            const errorCell_percent_CE2 = worksheet.getCell('F' + 8);
+            errorCell_percent_CE2.value = roundedPercentageError_CE2;
+            
+            
+          } else {
+            // Nếu sumM_CE1 và errorValue_CE1 không bằng 0, tiếp tục tính toán phần trăm sai số như trước đó
+            const percentageError_CE2 = (errorValue_CE2 / sumM_CE2) * 100;
+            const roundedPercentageError_CE2 = Math.round(percentageError_CE2 * 100) / 100;
+            
+            // Cập nhật giá trị phần trăm sai số vào ô F
+            const errorCell_percent_CE2 = worksheet.getCell('F' + 8);
+            errorCell_percent_CE2.value = roundedPercentageError_CE2;
+            
+          }
+
+          // Kiểm tra nếu sumM_CE1 và errorValue_CE1 đều bằng 0
+          if (sumM_CE3 === 0 && errorValue_CE3 === 0) {
+            // Gán giá trị phần trăm sai số là 0
+            const roundedPercentageError_CE3 = 0;
+            
+            // Cập nhật giá trị phần trăm sai số vào ô F
+            const errorCell_percent_CE3 = worksheet.getCell('F' + 9);
+            errorCell_percent_CE3.value = roundedPercentageError_CE3;
+            
+            
+          } else {
+            // Nếu sumM_CE1 và errorValue_CE1 không bằng 0, tiếp tục tính toán phần trăm sai số như trước đó
+            const percentageError_CE3 = (errorValue_CE3 / sumM_CE3) * 100;
+            const roundedPercentageError_CE3 = Math.round(percentageError_CE3 * 100) / 100;
+            
+            // Cập nhật giá trị phần trăm sai số vào ô F
+            const errorCell_percent_CE3 = worksheet.getCell('F' + 9);
+            errorCell_percent_CE3.value = roundedPercentageError_CE3;
+            
+          }
+          // Percent CE1
+          // Cập nhật giá trị phần trăm sai số vào cột F
+          const roundedPercentageError_PG = 0;
+          const errorCell_percent_PG = worksheet.getCell('F10');
+          errorCell_percent_PG.value = roundedPercentageError_PG;
+
+
+          // Cập nhật giá trị "Từ ngày" và "Đến ngày" trong dòng 4
+          const dataCell = worksheet.getCell('A4');
+          if (!conditions.FromDate || !conditions.ToDate) {
+            // Lấy ngày lâu nhất trong dulieutron
+            const oldestDate = dulieutron[dulieutron.length - 1].Date;
+            const fromDate = new Date(oldestDate);
+            
+            // Lấy ngày gần nhất trong dulieutron
+            const newestDate = dulieutron[0].Date;
+            const toDate = new Date(newestDate);
+            
+            const fromDateString = formatDate(fromDate);
+            const toDateString = formatDate(toDate);
+            
+            const combinedValue = 'Từ ngày: ' + fromDateString + ' - đến ngày: ' + toDateString;
+          
+            dataCell.value = combinedValue;
+          } else {
+            const fromDate = new Date(conditions.FromDate);
+            const toDate = new Date(conditions.ToDate);
+          
+            if (fromDate instanceof Date && !isNaN(fromDate) && toDate instanceof Date && !isNaN(toDate)) {
+              const fromDateString = formatDate(fromDate);
+              const toDateString = formatDate(toDate);
+              
+              const combinedValue = 'Từ ngày: ' + fromDateString + ' - đến ngày: ' + toDateString;
+          
+              dataCell.value = combinedValue;
+            }
+          }
+          
+          // Định dạng ô hàng 4 theo yêu cầu của bạn
+          dataCell.alignment = {
+            vertical: 'middle',
+            horizontal: 'left'
+          };
+          dataCell.font = {
+            bold: false,
+            italic: true
+          };
+
+          // Cập nhật giá trị "Máy" và "Tên hàng" trong dòng 5
+          const dataCellRow5 = worksheet.getCell('A5');
+          const machineID = conditions.MachineID || '';
+          const nameProduct = conditions.NameProduct || '';
+
+          // Kiểm tra và gán giá trị "Tất cả" nếu MachineID và NameProduct là rỗng
+          const machineIDText = machineID !== '' ? machineID : 'Tất cả';
+          const nameProductText = nameProduct !== '' ? nameProduct : 'Tất cả';
+
+          const combinedValueRow5 = 'Máy: ' + machineIDText + '   -   Tên hàng: ' + nameProductText;
+
+          dataCellRow5.value = combinedValueRow5;
+
+          // Định dạng ô hàng 5 theo yêu cầu của bạn
+          dataCellRow5.alignment = {
+            vertical: 'middle',
+            horizontal: 'left'
+          };
+          dataCellRow5.font = {
+            bold: false,
+            italic: true
+          };
+        // Lưu file Excel cập nhật vào Firebase Storage
+          const updatedWorkbookBuffer = await workbook.xlsx.writeBuffer();
+          const uploadTask = uploadBytes(storageRef, updatedWorkbookBuffer);
+
+      uploadTask
+        .then(() => {
+          console.log('File Excel đã được tải lên Firebase Storage.');
+          // Trả về đường dẫn tải xuống file Excel
+          getDownloadURL(storageRef)
+            .then((downloadURL) => {
+              console.log(downloadURL);
+              
+              callback(null, downloadURL);
+
+            })
+            .catch((error) => {
+              console.error('Lỗi khi lấy đường dẫn tải xuống file Excel:', error);
+                callback(error);
+            });
+        })
+        .catch((error) => {
+          console.error('Lỗi khi tải file Excel lên Firebase Storage:', error);
+          callback(error);
+        });
+      }
+      catch (error) {
+        console.error('Lỗi khi thực hiện tác vụ đọc, cập nhật file Excel:', error);
+        callback(error);
+      }
+
+    }
+  });
+};
+
+
 DuLieuTron.create = function(data, result){
     data.DateCreate = new Date();
     db.query("INSERT INTO dulieutronbd SET ?", data, function(err, dulieutron){

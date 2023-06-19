@@ -149,6 +149,12 @@ function updateTable(page, conditions) {
       handleExcel(event, conditions);
     });
 
+    var excelSumButton = document.getElementById("exportExcelSumBtn");
+    excelSumButton.addEventListener("click", function(event) {
+      const conditions = getConditionsFromInputs();
+      handleExcelSum(event, conditions);
+    });
+
     var searchButton = document.getElementById("search-button");
     searchButton.addEventListener("click", function(event) {
       const conditions = getConditionsFromInputs();
@@ -365,6 +371,33 @@ function handleExcel(event, conditions) {
         var serverFilePath = data.result;
 
         console.log("Exel");
+      // Tạo liên kết tải xuống động với đường dẫn tệp tin Excel
+        var link = document.createElement("a");
+        link.href = serverFilePath;
+
+      // Bắt đầu tải xuống
+      link.click();
+
+      
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy Url:', error);
+      });
+   
+}
+
+function handleExcelSum(event, conditions) {
+  event.preventDefault();
+  console.log(conditions);
+  const url = "https://factory-binhdong.vercel.app/dulieutron/exportexcelsum?" + new URLSearchParams(conditions).toString();
+
+  fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        
+        var serverFilePath = data.result;
+
+        console.log("Sum");
       // Tạo liên kết tải xuống động với đường dẫn tệp tin Excel
         var link = document.createElement("a");
         link.href = serverFilePath;
