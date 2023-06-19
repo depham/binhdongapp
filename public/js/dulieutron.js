@@ -350,7 +350,7 @@ searchButton.addEventListener("click", handleSearch);
 function handleExcel(event, conditions) {
   event.preventDefault();
   console.log(conditions);
-  const url = "https://factory-binhdong.vercel.app/dulieutron/exportexcel?" + new URLSearchParams(conditions).toString();
+  const url = "https://factory-binhdong.vercel.app/dulieutron/exportexcel?" + new URLSearchParams(conditions);
 
   fetch(url)
       .then(response => response.json())

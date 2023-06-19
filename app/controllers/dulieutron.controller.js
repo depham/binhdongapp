@@ -79,7 +79,7 @@ exports.get_excel_ByCondition = function(req, res) {
     DuLieuTron.getExcelByConditions(conditions, function(error, callback) {
         if (error) {
           console.error('Lỗi khi lấy dữ liệu Excel:', error);
-          res.status(500).send({ error: 'Lỗi khi lấy dữ liệu Excel' });
+          res.send({result: error});
         } else {
           console.log(callback);
           res.send({ result: callback });
