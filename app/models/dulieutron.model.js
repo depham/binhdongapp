@@ -2,20 +2,23 @@ const db = require('../common/connect');
 const exceljs = require('exceljs');
 const XLSX = require("xlsx");
 
-//const tempFolderPath = './temp';
-//const storageFolderPath = './storage';
+const { getStorage, ref, uploadBytes, getDownloadURL } = require("@firebase/storage");
+const { deleteObject } = require("@firebase/storage");
+const { initializeApp } = require("firebase/app");
 
-// Tạo thư mục temp
-//if (!fs.existsSync(tempFolderPath)) {
-//  fs.mkdirSync(tempFolderPath);
-//  console.log('Thư mục temp đã được tạo.');
-//}
+const firebaseConfig = {
+  apiKey: "AIzaSyA2Se4PVHdlDiXu-2OfYFRRzRFGn5YX4eY",
+  authDomain: "factorybd-3d9c9.firebaseapp.com",
+  projectId: "factorybd-3d9c9",
+  storageBucket: "factorybd-3d9c9.appspot.com",
+  messagingSenderId: "557990948165",
+  appId: "1:557990948165:web:66a05809379a5b9b7a222c",
+  measurementId: "G-YH81F206PZ"
+};
 
-// Tạo thư mục storage
-//if (!fs.existsSync(storageFolderPath)) {
-//  fs.mkdirSync(storageFolderPath);
-//  console.log('Thư mục storage đã được tạo.');
-//}
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
 
 const DuLieuTron = function(dulieutron){
     this.DuLieuTronID = dulieutron.DuLieuTronID;
