@@ -640,6 +640,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
             // Cập nhật giá trị phần trăm sai số vào ô F
             const errorCell_percent_CE2 = worksheet.getCell('F' + 8);
             errorCell_percent_CE2.value = roundedPercentageError_CE2;
+            errorCell_percent_CE2.numFmt = '0.00';
             
           }
 
@@ -661,6 +662,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
             // Cập nhật giá trị phần trăm sai số vào ô F
             const errorCell_percent_CE3 = worksheet.getCell('F' + 9);
             errorCell_percent_CE3.value = roundedPercentageError_CE3;
+            errorCell_percent_CE3.numFmt = '0.00';
             
           }
           // Percent CE1
