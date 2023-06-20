@@ -105,12 +105,17 @@ exports.get_excelsum_ByCondition = function(req, res) {
     });
 };
 
-exports.add_dulieutron = function(req, res){
+exports.add_dulieutron = function(req, res) {
     var data = req.body;
-    DuLieuTron.create(data, function(respnse){
-        res.send({result: respnse});
+    DuLieuTron.create(data, function(response) {
+        if (response) {
+            res.send("OK");
+        } else {
+            res.send("ERROR");
+        }
     });
 }
+
 exports.remove_dulieutron = function(req, res){
     var id = req.params.id;
     DuLieuTron.remove(id, function(respnse){
