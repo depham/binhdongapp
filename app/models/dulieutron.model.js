@@ -773,10 +773,11 @@ DuLieuTron.create = function(data, result){
     data.DateCreate = new Date();
     db.query("INSERT INTO dulieutronbd SET ?", data, function(err, dulieutron){
         if(err){
-            result(null);
+            result("NO");
         }
         else {
-            result({DuLieuTronID: dulieutron.insertId, ...data});
+            //result({DuLieuTronID: dulieutron.insertId, ...data});
+            result("OK");
         }
     });
 }
