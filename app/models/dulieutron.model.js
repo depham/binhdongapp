@@ -500,7 +500,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const sumCell_PV_CE1 = worksheet.getCell('C7');
           sumCell_PV_CE1.value = sumPV_CE1;
           // Định dạng ô C7 thành số hàng nghìn
-          sumCell_PV_CE1.numFmt = '#,##0';
+          sumCell_PV_CE1.numFmt = '#,##0.00';
 
           // Tính tổng các giá trị từ cột PV_CE2 của dulieutron
           const sumPV_CE2 = dulieutron.reduce((total, row) => total + (row.PV_CE2 || 0), 0);
@@ -509,7 +509,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const sumCell_PV_CE2 = worksheet.getCell('C8');
           sumCell_PV_CE2.value = sumPV_CE2;
           // Định dạng ô C7 thành số hàng nghìn
-          sumCell_PV_CE2.numFmt = '#,##0';
+          sumCell_PV_CE2.numFmt = '#,##0.00';
 
           // Tính tổng các giá trị từ cột PV_CE3 của dulieutron
           const sumPV_CE3 = dulieutron.reduce((total, row) => total + (row.PV_CE3 || 0), 0);
@@ -518,7 +518,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const sumCell_PV_CE3 = worksheet.getCell('C9');
           sumCell_PV_CE3.value = sumPV_CE3;
           // Định dạng ô C7 thành số hàng nghìn
-          sumCell_PV_CE3.numFmt = '#,##0';
+          sumCell_PV_CE3.numFmt = '#,##0.00';
 
           // Tính tổng các giá trị từ cột PV_PG của dulieutron
           const sumPV_PG = dulieutron.reduce((total, row) => total + (row.PV_PG || 0), 0);
@@ -527,7 +527,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const sumCell_PV_PG = worksheet.getCell('C10');
           sumCell_PV_PG.value = sumPV_PG;
           // Định dạng ô C7 thành số hàng nghìn
-          sumCell_PV_PG.numFmt = '#,##0';
+          sumCell_PV_PG.numFmt = '#,##0.00';
 
           //cột D
           // Tính tổng các giá trị từ cột PV_CE1 của dulieutron
@@ -537,7 +537,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const sumCell_M_CE1 = worksheet.getCell('D7');
           sumCell_M_CE1.value = sumM_CE1;
           // Định dạng ô C7 thành số hàng nghìn
-          sumCell_M_CE1.numFmt = '#,##0';
+          sumCell_M_CE1.numFmt = '#,##0.00';
 
           // Tính tổng các giá trị từ cột PV_CE2 của dulieutron
           const sumM_CE2 = dulieutron.reduce((total, row) => total + (row.M_CE2 || 0), 0);
@@ -546,7 +546,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const sumCell_M_CE2 = worksheet.getCell('D8');
           sumCell_M_CE2.value = sumM_CE2;
           // Định dạng ô C7 thành số hàng nghìn
-          sumCell_M_CE2.numFmt = '#,##0';
+          sumCell_M_CE2.numFmt = '#,##0.00';
 
           // Tính tổng các giá trị từ cột PV_CE3 của dulieutron
           const sumM_CE3 = dulieutron.reduce((total, row) => total + (row.M_CE3 || 0), 0);
@@ -555,7 +555,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const sumCell_M_CE3 = worksheet.getCell('D9');
           sumCell_M_CE3.value = sumM_CE3;
           // Định dạng ô C7 thành số hàng nghìn
-          sumCell_M_CE3.numFmt = '#,##0';
+          sumCell_M_CE3.numFmt = '#,##0.00';
 
           // Tính tổng các giá trị từ cột PV_CE3 của dulieutron
           const sumM_PG = dulieutron.reduce((total, row) => total + (row.PV_PG || 0), 0);
@@ -564,7 +564,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const sumCell_M_PG = worksheet.getCell('D10');
           sumCell_M_PG.value = sumM_PG;
           // Định dạng ô C7 thành số hàng nghìn
-          sumCell_M_PG.numFmt = '#,##0';
+          sumCell_M_PG.numFmt = '#,##0.00';
 
           // Sai số Kg
           // Tính sai số CE1
@@ -573,7 +573,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const errorCell_CE1 = worksheet.getCell('E7');
           errorCell_CE1.value = errorValue_CE1;
           // Định dạng ô E7 thành số hàng nghìn
-          errorCell_CE1.numFmt = '#,##0';
+          errorCell_CE1.numFmt = '#,##0.00';
 
           // Tính sai số CE2
           const errorValue_CE2 = sumPV_CE2 - sumM_CE2; 
@@ -581,7 +581,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const errorCell_CE2 = worksheet.getCell('E8');
           errorCell_CE2.value = errorValue_CE2;
           // Định dạng ô E7 thành số hàng nghìn
-          errorCell_CE2.numFmt = '#,##0';
+          errorCell_CE2.numFmt = '#,##0.00';
 
           // Tính sai số CE3
           const errorValue_CE3 = sumPV_CE3 - sumM_CE3; 
@@ -589,7 +589,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const errorCell_CE3 = worksheet.getCell('E9');
           errorCell_CE3.value = errorValue_CE3;
           // Định dạng ô E7 thành số hàng nghìn
-          errorCell_CE3.numFmt = '#,##0';
+          errorCell_CE3.numFmt = '#,##0.00';
 
           // Tính sai số PG
           const errorValue_PG = sumPV_PG - sumPV_PG; 
@@ -597,7 +597,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
           const errorCell_PG = worksheet.getCell('E10');
           errorCell_PG.value = errorValue_PG;
           // Định dạng ô E7 thành số hàng nghìn
-          errorCell_PG.numFmt = '#,##0';
+          errorCell_PG.numFmt = '#,##0.00';
 
           // Kiểm tra nếu sumM_CE1 và errorValue_CE1 đều bằng 0
           if (sumM_CE1 === 0 && errorValue_CE1 === 0) {
@@ -617,7 +617,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
             // Cập nhật giá trị phần trăm sai số vào ô F
             const errorCell_percent_CE1 = worksheet.getCell('F' + 7);
             errorCell_percent_CE1.value = roundedPercentageError_CE1;
-            errorCell_percent_CE1.numFmt = '0.00';
+            errorCell_percent_CE1.numFmt = '#,##0.00'
             
           }
           
@@ -640,7 +640,7 @@ DuLieuTron.getExcelSumByConditions = function(conditions, callback) {
             // Cập nhật giá trị phần trăm sai số vào ô F
             const errorCell_percent_CE2 = worksheet.getCell('F' + 8);
             errorCell_percent_CE2.value = roundedPercentageError_CE2;
-            errorCell_percent_CE2.numFmt = '0.00';
+            errorCell_percent_CE2.numFmt = '#,##0.00'
             
           }
 
