@@ -185,8 +185,8 @@ function updateTable(page, conditions) {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        const totalRows = data.result;
-        return totalRows;
+        const totalSupplies = data.result;
+        return totalSupplies;
       })
       .catch(error => {
         console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
@@ -199,8 +199,8 @@ function updateTable(page, conditions) {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        const totalRows = data.result;
-        return totalRows;
+        const totalSupplies = data.result;
+        return totalSupplies;
       })
       .catch(error => {
         console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
@@ -213,8 +213,8 @@ function updateTable(page, conditions) {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        const totalRows = data.result;
-        return totalRows;
+        const totalSupplies = data.result;
+        return totalSupplies;
       })
       .catch(error => {
         console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
@@ -227,8 +227,8 @@ function updateTable(page, conditions) {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        const totalRows = data.result;
-        return totalRows;
+        const totalSupplies = data.result;
+        return totalSupplies;
       })
       .catch(error => {
         console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
@@ -241,8 +241,8 @@ function updateTable(page, conditions) {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        const totalRows = data.result;
-        return totalRows;
+        const totalSupplies = data.result;
+        return totalSupplies;
       })
       .catch(error => {
         console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
@@ -255,8 +255,8 @@ function updateTable(page, conditions) {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        const totalRows = data.result;
-        return totalRows;
+        const totalSupplies = data.result;
+        return totalSupplies;
       })
       .catch(error => {
         console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
@@ -268,8 +268,8 @@ function updateTable(page, conditions) {
     return fetch(url)
       .then(response => response.json())
       .then(data => {
-        const totalRows = data.result;
-        return totalRows;
+        const totalSupplies = data.result;
+        return totalSupplies;
       })
       .catch(error => {
         console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
