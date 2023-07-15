@@ -120,6 +120,11 @@ function updateTable(page, conditions) {
   
     const conditions = getConditionsFromInputs(); // Lấy giá trị từ các trường input
     console.log(conditions);
+
+    //Tổng vật tư
+    const totalSupplies = await getTotalSupplies(conditions);
+    getSupplies(totalSupplies);
+
     // Lấy tổng số dòng dữ liệu
     const totalRows = await getTotalRows(conditions);
     const totalPages = Math.ceil(totalRows / perPage);
@@ -161,6 +166,21 @@ function updateTable(page, conditions) {
       handleSearch(event, conditions);
     });
   });
+
+  function getTotalSupplies(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliesbycondition?" + new URLSearchParams(conditions);
+  
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const totalRows = data.result;
+        return totalRows;
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+  }
+
   function getTotalRows(conditions) {
     const url = "https://factory-binhdong.vercel.app/dulieutron/totalrowbycondition?" + new URLSearchParams(conditions);
   
@@ -353,7 +373,21 @@ function handleSearch(event) {
     })
     .catch(error => {
       console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
-    });
+  });
+
+  getTotalSupplies(conditions)
+    .then(totalSupplies => {
+      
+      console.log(totalSupplies);
+      
+      // Thêm class 'active' cho trang mặc định
+      
+      getSupplies(totalSupplies);
+      
+    })
+    .catch(error => {
+      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+  });
 }
 
 
@@ -411,4 +445,8 @@ function handleExcelSum(event, conditions) {
         console.error('Lỗi khi lấy Url:', error);
       });
    
+}
+function getSupplies(totalSupplies){
+  var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
+  document.getElementById('stats-M-CE1').textContent  = formattedTotalSupplies
 }

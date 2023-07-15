@@ -26,4 +26,6 @@ module.exports = function(router){
 
     router.get("/dulieutron/exportexcelsum", dulieutronController.get_excelsum_ByCondition);
 
+    router.get("/dulieutron/totalsuppliesbycondition", dulieutronController.get_total_M_CE1_ByCondition);
+
 }
