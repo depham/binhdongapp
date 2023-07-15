@@ -118,6 +118,79 @@ exports.get_total_M_CE1_ByCondition = function(req, res) {
     });
   };
 
+  exports.get_total_M_CE2_ByCondition = function(req, res) {
+    var conditions = {
+      MachineID: req.query.machine,
+      FromDate: req.query.fromDate,
+      NameProduct: req.query.productName,
+      ToDate: req.query.toDate
+    };
+    DuLieuTron.getTotal_M_CE2_ByConditions(conditions, function(totalSupplies) {
+        console.log(totalSupplies);
+        res.send({ result: totalSupplies });
+    });
+  };
+  exports.get_total_M_CE3_ByCondition = function(req, res) {
+    var conditions = {
+      MachineID: req.query.machine,
+      FromDate: req.query.fromDate,
+      NameProduct: req.query.productName,
+      ToDate: req.query.toDate
+    };
+    DuLieuTron.getTotal_M_CE3_ByConditions(conditions, function(totalSupplies) {
+        console.log(totalSupplies);
+        res.send({ result: totalSupplies });
+    });
+  };
+  exports.get_total_PV_CE1_ByCondition = function(req, res) {
+    var conditions = {
+      MachineID: req.query.machine,
+      FromDate: req.query.fromDate,
+      NameProduct: req.query.productName,
+      ToDate: req.query.toDate
+    };
+    DuLieuTron.getTotal_PV_CE1_ByConditions(conditions, function(totalSupplies) {
+        console.log(totalSupplies);
+        res.send({ result: totalSupplies });
+    });
+  };
+  exports.get_total_PV_CE2_ByCondition = function(req, res) {
+    var conditions = {
+      MachineID: req.query.machine,
+      FromDate: req.query.fromDate,
+      NameProduct: req.query.productName,
+      ToDate: req.query.toDate
+    };
+    DuLieuTron.getTotal_PV_CE2_ByConditions(conditions, function(totalSupplies) {
+        console.log(totalSupplies);
+        res.send({ result: totalSupplies });
+    });
+  };
+  exports.get_total_PV_CE3_ByCondition = function(req, res) {
+    var conditions = {
+      MachineID: req.query.machine,
+      FromDate: req.query.fromDate,
+      NameProduct: req.query.productName,
+      ToDate: req.query.toDate
+    };
+    DuLieuTron.getTotal_PV_CE3_ByConditions(conditions, function(totalSupplies) {
+        console.log(totalSupplies);
+        res.send({ result: totalSupplies });
+    });
+  };
+  exports.get_total_M_PG_ByCondition = function(req, res) {
+    var conditions = {
+      MachineID: req.query.machine,
+      FromDate: req.query.fromDate,
+      NameProduct: req.query.productName,
+      ToDate: req.query.toDate
+    };
+    DuLieuTron.getTotal_M_PG_ByConditions(conditions, function(totalSupplies) {
+        console.log(totalSupplies);
+        res.send({ result: totalSupplies });
+    });
+  };
+
 exports.add_dulieutron = function(req, res) {
     var data = req.body;
     DuLieuTron.create(data, function(response) {

@@ -806,6 +806,228 @@ DuLieuTron.getTotal_M_CE1_ByConditions = function(conditions, result){
   });
 };
 
+DuLieuTron.getTotal_M_CE2_ByConditions = function(conditions, result){
+  var query = "SELECT SUM(M_CE2) AS total FROM dulieutronbd"; // Thay thế 'columnName' bằng tên cột bạn muốn tính tổng
+  var params = [];
+  var values = [];
+
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
+      }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
+      }
+    }
+  }
+
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
+
+  // Thêm phần sắp xếp theo trường Date nếu cần
+
+  db.query(query, values, function(err, countResult) {
+    if (err) {
+      result(null);
+      return;
+    }
+
+    var totalRows = countResult[0].total;
+    console.log(totalRows);
+    result(totalRows);
+  });
+};
+
+DuLieuTron.getTotal_M_CE3_ByConditions = function(conditions, result){
+  var query = "SELECT SUM(M_CE3) AS total FROM dulieutronbd"; // Thay thế 'columnName' bằng tên cột bạn muốn tính tổng
+  var params = [];
+  var values = [];
+
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
+      }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
+      }
+    }
+  }
+
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
+
+  // Thêm phần sắp xếp theo trường Date nếu cần
+
+  db.query(query, values, function(err, countResult) {
+    if (err) {
+      result(null);
+      return;
+    }
+
+    var totalRows = countResult[0].total;
+    console.log(totalRows);
+    result(totalRows);
+  });
+};
+
+DuLieuTron.getTotal_PV_CE1_ByConditions = function(conditions, result){
+  var query = "SELECT SUM(PV_CE1) AS total FROM dulieutronbd"; // Thay thế 'columnName' bằng tên cột bạn muốn tính tổng
+  var params = [];
+  var values = [];
+
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
+      }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
+      }
+    }
+  }
+
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
+
+  // Thêm phần sắp xếp theo trường Date nếu cần
+
+  db.query(query, values, function(err, countResult) {
+    if (err) {
+      result(null);
+      return;
+    }
+
+    var totalRows = countResult[0].total;
+    console.log(totalRows);
+    result(totalRows);
+  });
+};
+
+DuLieuTron.getTotal_PV_CE2_ByConditions = function(conditions, result){
+  var query = "SELECT SUM(PV_CE2) AS total FROM dulieutronbd"; // Thay thế 'columnName' bằng tên cột bạn muốn tính tổng
+  var params = [];
+  var values = [];
+
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
+      }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
+      }
+    }
+  }
+
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
+
+  // Thêm phần sắp xếp theo trường Date nếu cần
+
+  db.query(query, values, function(err, countResult) {
+    if (err) {
+      result(null);
+      return;
+    }
+
+    var totalRows = countResult[0].total;
+    console.log(totalRows);
+    result(totalRows);
+  });
+};
+
+DuLieuTron.getTotal_PV_CE3_ByConditions = function(conditions, result){
+  var query = "SELECT SUM(PV_CE3) AS total FROM dulieutronbd"; // Thay thế 'columnName' bằng tên cột bạn muốn tính tổng
+  var params = [];
+  var values = [];
+
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
+      }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
+      }
+    }
+  }
+
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
+
+  // Thêm phần sắp xếp theo trường Date nếu cần
+
+  db.query(query, values, function(err, countResult) {
+    if (err) {
+      result(null);
+      return;
+    }
+
+    var totalRows = countResult[0].total;
+    console.log(totalRows);
+    result(totalRows);
+  });
+};
+
+DuLieuTron.getTotal_M_PG_ByConditions = function(conditions, result){
+  var query = "SELECT SUM(PV_PG) AS total FROM dulieutronbd"; // Thay thế 'columnName' bằng tên cột bạn muốn tính tổng
+  var params = [];
+  var values = [];
+
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
+      }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
+      }
+    }
+  }
+
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
+
+  // Thêm phần sắp xếp theo trường Date nếu cần
+
+  db.query(query, values, function(err, countResult) {
+    if (err) {
+      result(null);
+      return;
+    }
+
+    var totalRows = countResult[0].total;
+    console.log(totalRows);
+    result(totalRows);
+  });
+};
+
 
 DuLieuTron.create = function(data, result){
     data.DateCreate = new Date();

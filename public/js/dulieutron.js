@@ -122,8 +122,20 @@ function updateTable(page, conditions) {
     console.log(conditions);
 
     //Tổng vật tư
-    const totalSupplies = await getTotalSupplies(conditions);
-    getSupplies(totalSupplies);
+    const totalSupplies_M_CE1 = await getTotalSupplies_M_CE1(conditions);
+    getSupplies_M_CE1(totalSupplies_M_CE1);
+    const totalSupplies_M_CE2 = await getTotalSupplies_M_CE2(conditions);
+    getSupplies_M_CE2(totalSupplies_M_CE2);
+    const totalSupplies_M_CE3 = await getTotalSupplies_M_CE3(conditions);
+    getSupplies_M_CE3(totalSupplies_M_CE3);
+    const totalSupplies_PV_CE1 = await getTotalSupplies_PV_CE1(conditions);
+    getSupplies_PV_CE1(totalSupplies_PV_CE1);
+    const totalSupplies_PV_CE2 = await getTotalSupplies_PV_CE2(conditions);
+    getSupplies_PV_CE2(totalSupplies_PV_CE1);
+    const totalSupplies_PV_CE3 = await getTotalSupplies_PV_CE3(conditions);
+    getSupplies_PV_CE3(totalSupplies_PV_CE3);
+    const totalSupplies_M_PG = await getTotalSupplies_M_PG(conditions);
+    getSupplies_M_PG(totalSupplies_M_PG);
 
     // Lấy tổng số dòng dữ liệu
     const totalRows = await getTotalRows(conditions);
@@ -167,8 +179,8 @@ function updateTable(page, conditions) {
     });
   });
 
-  function getTotalSupplies(conditions) {
-    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliesbycondition?" + new URLSearchParams(conditions);
+  function getTotalSupplies_M_CE1(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliesmce1bycondition?" + new URLSearchParams(conditions);
   
     return fetch(url)
       .then(response => response.json())
@@ -181,6 +193,88 @@ function updateTable(page, conditions) {
       });
   }
 
+  function getTotalSupplies_M_CE2(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliesmce2bycondition?" + new URLSearchParams(conditions);
+  
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const totalRows = data.result;
+        return totalRows;
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+  }
+
+  function getTotalSupplies_M_CE3(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliesmce3bycondition?" + new URLSearchParams(conditions);
+  
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const totalRows = data.result;
+        return totalRows;
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+  }
+
+  function getTotalSupplies_PV_CE1(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliespvce1bycondition?" + new URLSearchParams(conditions);
+  
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const totalRows = data.result;
+        return totalRows;
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+  }
+
+  function getTotalSupplies_PV_CE2(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliespvce2bycondition?" + new URLSearchParams(conditions);
+  
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const totalRows = data.result;
+        return totalRows;
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+  }
+
+  function getTotalSupplies_PV_CE3(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliespvce3bycondition?" + new URLSearchParams(conditions);
+  
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const totalRows = data.result;
+        return totalRows;
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+  }
+  function getTotalSupplies_M_PG(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliesmpgbycondition?" + new URLSearchParams(conditions);
+  
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const totalRows = data.result;
+        return totalRows;
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+  }
   function getTotalRows(conditions) {
     const url = "https://factory-binhdong.vercel.app/dulieutron/totalrowbycondition?" + new URLSearchParams(conditions);
   
@@ -375,20 +469,99 @@ function handleSearch(event) {
       console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
   });
 
-  getTotalSupplies(conditions)
+  getTotalSupplies_M_CE1(conditions)
     .then(totalSupplies => {
       
       console.log(totalSupplies);
       
       // Thêm class 'active' cho trang mặc định
       
-      getSupplies(totalSupplies);
+      getSupplies_M_CE1(totalSupplies);
+      
+    })
+    .catch(error => {
+      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+  });
+  getTotalSupplies_M_CE2(conditions)
+    .then(totalSupplies => {
+      
+      console.log(totalSupplies);
+      
+      // Thêm class 'active' cho trang mặc định
+      
+      getSupplies_M_CE2(totalSupplies);
+      
+    })
+    .catch(error => {
+      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+  });
+  getTotalSupplies_M_CE3(conditions)
+    .then(totalSupplies => {
+      
+      console.log(totalSupplies);
+      
+      // Thêm class 'active' cho trang mặc định
+      
+      getSupplies_M_CE3(totalSupplies);
+      
+    })
+    .catch(error => {
+      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+  });
+  getTotalSupplies_PV_CE1(conditions)
+    .then(totalSupplies => {
+      
+      console.log(totalSupplies);
+      
+      // Thêm class 'active' cho trang mặc định
+      
+      getSupplies_PV_CE1(totalSupplies);
+      
+    })
+    .catch(error => {
+      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+  });
+  getTotalSupplies_PV_CE2(conditions)
+    .then(totalSupplies => {
+      
+      console.log(totalSupplies);
+      
+      // Thêm class 'active' cho trang mặc định
+      
+      getSupplies_PV_CE2(totalSupplies);
+      
+    })
+    .catch(error => {
+      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+  });
+  getTotalSupplies_PV_CE3(conditions)
+    .then(totalSupplies => {
+      
+      console.log(totalSupplies);
+      
+      // Thêm class 'active' cho trang mặc định
+      
+      getSupplies_PV_CE3(totalSupplies);
+      
+    })
+    .catch(error => {
+      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+  });
+  getTotalSupplies_M_PG(conditions)
+    .then(totalSupplies => {
+      
+      console.log(totalSupplies);
+      
+      // Thêm class 'active' cho trang mặc định
+      
+      getSupplies_M_PG(totalSupplies);
       
     })
     .catch(error => {
       console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
   });
 }
+
 
 
 function handleExcel(event, conditions) {
@@ -446,7 +619,32 @@ function handleExcelSum(event, conditions) {
       });
    
 }
-function getSupplies(totalSupplies){
+function getSupplies_M_CE1(totalSupplies){
   var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
   document.getElementById('stats-M-CE1').textContent  = formattedTotalSupplies
+}
+function getSupplies_M_CE2(totalSupplies){
+  var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
+  document.getElementById('stats-M-CE2').textContent  = formattedTotalSupplies
+}
+function getSupplies_M_CE3(totalSupplies){
+  var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
+  document.getElementById('stats-M-CE3').textContent  = formattedTotalSupplies
+}
+function getSupplies_PV_CE1(totalSupplies){
+  var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
+  document.getElementById('stats-PV-CE1').textContent  = formattedTotalSupplies
+}
+function getSupplies_PV_CE2(totalSupplies){
+  var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
+  document.getElementById('stats-PV-CE2').textContent  = formattedTotalSupplies
+}
+function getSupplies_PV_CE3(totalSupplies){
+  var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
+  document.getElementById('stats-PV-CE3').textContent  = formattedTotalSupplies
+}
+function getSupplies_M_PG(totalSupplies){
+  var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
+  document.getElementById('stats-M-PG').textContent  = formattedTotalSupplies
+  document.getElementById('stats-PV-PG').textContent  = formattedTotalSupplies
 }

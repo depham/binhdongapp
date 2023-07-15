@@ -26,6 +26,12 @@ module.exports = function(router){
 
     router.get("/dulieutron/exportexcelsum", dulieutronController.get_excelsum_ByCondition);
 
-    router.get("/dulieutron/totalsuppliesbycondition", dulieutronController.get_total_M_CE1_ByCondition);
+    router.get("/dulieutron/totalsuppliesmce1bycondition", dulieutronController.get_total_M_CE1_ByCondition);
+    router.get("/dulieutron/totalsuppliesmce2bycondition", dulieutronController.get_total_M_CE2_ByCondition);
+    router.get("/dulieutron/totalsuppliesmce3bycondition", dulieutronController.get_total_M_CE3_ByCondition);
+    router.get("/dulieutron/totalsuppliespvce1bycondition", dulieutronController.get_total_PV_CE1_ByCondition);
+    router.get("/dulieutron/totalsuppliespvce2bycondition", dulieutronController.get_total_PV_CE2_ByCondition);
+    router.get("/dulieutron/totalsuppliespvce3bycondition", dulieutronController.get_total_PV_CE3_ByCondition);
+    router.get("/dulieutron/totalsuppliesmpgbycondition", dulieutronController.get_total_M_PG_ByCondition);
 
 }
