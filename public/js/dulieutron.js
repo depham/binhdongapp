@@ -125,21 +125,7 @@ function updateTable(page, conditions) {
 
     const totalSupplies = await getTotalSupplies(conditions);
     getSupplies(totalSupplies);
-    const totalSupplies_M_CE1 = await getTotalSupplies_M_CE1(conditions);
-    getSupplies_M_CE1(totalSupplies_M_CE1);
-    const totalSupplies_M_CE2 = await getTotalSupplies_M_CE2(conditions);
-    getSupplies_M_CE2(totalSupplies_M_CE2);
-    const totalSupplies_M_CE3 = await getTotalSupplies_M_CE3(conditions);
-    getSupplies_M_CE3(totalSupplies_M_CE3);
-    const totalSupplies_PV_CE1 = await getTotalSupplies_PV_CE1(conditions);
-    getSupplies_PV_CE1(totalSupplies_PV_CE1);
-    const totalSupplies_PV_CE2 = await getTotalSupplies_PV_CE2(conditions);
-    getSupplies_PV_CE2(totalSupplies_PV_CE1);
-    const totalSupplies_PV_CE3 = await getTotalSupplies_PV_CE3(conditions);
-    getSupplies_PV_CE3(totalSupplies_PV_CE3);
-    const totalSupplies_M_PG = await getTotalSupplies_M_PG(conditions);
-    getSupplies_M_PG(totalSupplies_M_PG);
-
+    
     // Lấy tổng số dòng dữ liệu
     const totalRows = await getTotalRows(conditions);
     const totalPages = Math.ceil(totalRows / perPage);
@@ -499,97 +485,7 @@ function handleSearch(event) {
       console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
   });
 
-  getTotalSupplies_M_CE1(conditions)
-    .then(totalSupplies => {
-      
-      console.log(totalSupplies);
-      
-      // Thêm class 'active' cho trang mặc định
-      
-      getSupplies_M_CE1(totalSupplies);
-      
-    })
-    .catch(error => {
-      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
-  });
-  getTotalSupplies_M_CE2(conditions)
-    .then(totalSupplies => {
-      
-      console.log(totalSupplies);
-      
-      // Thêm class 'active' cho trang mặc định
-      
-      getSupplies_M_CE2(totalSupplies);
-      
-    })
-    .catch(error => {
-      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
-  });
-  getTotalSupplies_M_CE3(conditions)
-    .then(totalSupplies => {
-      
-      console.log(totalSupplies);
-      
-      // Thêm class 'active' cho trang mặc định
-      
-      getSupplies_M_CE3(totalSupplies);
-      
-    })
-    .catch(error => {
-      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
-  });
-  getTotalSupplies_PV_CE1(conditions)
-    .then(totalSupplies => {
-      
-      console.log(totalSupplies);
-      
-      // Thêm class 'active' cho trang mặc định
-      
-      getSupplies_PV_CE1(totalSupplies);
-      
-    })
-    .catch(error => {
-      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
-  });
-  getTotalSupplies_PV_CE2(conditions)
-    .then(totalSupplies => {
-      
-      console.log(totalSupplies);
-      
-      // Thêm class 'active' cho trang mặc định
-      
-      getSupplies_PV_CE2(totalSupplies);
-      
-    })
-    .catch(error => {
-      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
-  });
-  getTotalSupplies_PV_CE3(conditions)
-    .then(totalSupplies => {
-      
-      console.log(totalSupplies);
-      
-      // Thêm class 'active' cho trang mặc định
-      
-      getSupplies_PV_CE3(totalSupplies);
-      
-    })
-    .catch(error => {
-      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
-  });
-  getTotalSupplies_M_PG(conditions)
-    .then(totalSupplies => {
-      
-      console.log(totalSupplies);
-      
-      // Thêm class 'active' cho trang mặc định
-      
-      getSupplies_M_PG(totalSupplies);
-      
-    })
-    .catch(error => {
-      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
-  });
+  
 }
 
 
