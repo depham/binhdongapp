@@ -552,13 +552,15 @@ function getSupplies(totalSupplies){
   var formattedTotalSupplies_PV1 = totalSupplies.PV_CE1;
   var formattedTotalSupplies_PV2 = totalSupplies.PV_CE2;
   var formattedTotalSupplies_PV3 = totalSupplies.PV_CE3;
+  var formattedTotalSupplies_PVPG = totalSupplies.PV_PG;
   document.getElementById('stats-M-CE1').textContent  = formattedTotalSupplies_M1;
   document.getElementById('stats-M-CE2').textContent  = formattedTotalSupplies_M2;
   document.getElementById('stats-M-CE3').textContent  = formattedTotalSupplies_M3;
+  document.getElementById('stats-M-PG').textContent  = formattedTotalSupplies_PVPG;
   document.getElementById('stats-PV-CE1').textContent  = formattedTotalSupplies_PV1;
   document.getElementById('stats-PV-CE2').textContent  = formattedTotalSupplies_PV2;
   document.getElementById('stats-PV-CE3').textContent  = formattedTotalSupplies_PV3;
-  
+  document.getElementById('stats-PV-PG').textContent  = formattedTotalSupplies_PVPG;
 }
 
 function getSupplies_M_CE1(totalSupplies){
