@@ -546,11 +546,11 @@ function handleExcelSum(event, conditions) {
    
 }
 function getSupplies(totalSupplies){
-  var formattedTotalSupplies_M1 = Number(totalSupplies.M_CE1).toLocaleString();
-  var formattedTotalSupplies_M2 = Number(totalSupplies.M_CE2).toLocaleString();
+  var formattedTotalSupplies_M1 = totalSupplies.M_CE1;
+  var formattedTotalSupplies_M2 = totalSupplies.M_CE2;
   document.getElementById('stats-M-CE1').textContent  = formattedTotalSupplies_M1;
   document.getElementById('stats-M-CE2').textContent  = formattedTotalSupplies_M2;
-  //document.getElementById('stats-M-CE3').textContent  = formattedTotalSupplies.M_CE3;
+  
 }
 
 function getSupplies_M_CE1(totalSupplies){
