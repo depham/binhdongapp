@@ -1041,6 +1041,20 @@ DuLieuTron.getTotalSuppliesByConditions = function(conditions, columns, result){
     }
   }
 
+  for (var key in conditions) {
+    if (key === "MachineID" || key === "NameProduct") {
+      if (conditions[key]) {
+        params.push(key + " = ?");
+        values.push(conditions[key]);
+      }
+    } else if (key === "FromDate" || key === "ToDate") {
+      if (conditions[key]) {
+        params.push("Date " + (key === "FromDate" ? ">=" : "<=") + " ?");
+        values.push(conditions[key]);
+      }
+    }
+  }
+
   query += " FROM dulieutronbd";
 
   // Xử lý các điều kiện
