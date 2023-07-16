@@ -122,6 +122,9 @@ function updateTable(page, conditions) {
     console.log(conditions);
 
     //Tổng vật tư
+
+    const totalSupplies = await getTotalSupplies(conditions);
+    getSupplies(totalSupplies);
     const totalSupplies_M_CE1 = await getTotalSupplies_M_CE1(conditions);
     getSupplies_M_CE1(totalSupplies_M_CE1);
     const totalSupplies_M_CE2 = await getTotalSupplies_M_CE2(conditions);
@@ -178,6 +181,19 @@ function updateTable(page, conditions) {
       handleSearch(event, conditions);
     });
   });
+  function getTotalSupplies(conditions) {
+    const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliesbycondition?" + new URLSearchParams(conditions);
+  
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const totalRows = data.result;
+        return totalRows;
+      })
+      .catch(error => {
+        console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+      });
+    }
 
   function getTotalSupplies_M_CE1(conditions) {
     const url = "https://factory-binhdong.vercel.app/dulieutron/totalsuppliesmce1bycondition?" + new URLSearchParams(conditions);
@@ -469,6 +485,20 @@ function handleSearch(event) {
       console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
   });
 
+  getTotalSupplies(conditions)
+    .then(totalSupplies => {
+      
+      console.log(totalSupplies);
+      
+      // Thêm class 'active' cho trang mặc định
+      
+      getSupplies(totalSupplies);
+      
+    })
+    .catch(error => {
+      console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
+  });
+
   getTotalSupplies_M_CE1(conditions)
     .then(totalSupplies => {
       
@@ -619,6 +649,14 @@ function handleExcelSum(event, conditions) {
       });
    
 }
+function getSupplies(totalSupplies){
+  var formattedTotalSupplies_M1 = Number(totalSupplies.M_CE1).toLocaleString();
+  var formattedTotalSupplies_M2 = Number(totalSupplies.M_CE2).toLocaleString();
+  document.getElementById('stats-M-CE1').textContent  = formattedTotalSupplies_M1;
+  document.getElementById('stats-M-CE2').textContent  = formattedTotalSupplies_M2;
+  //document.getElementById('stats-M-CE3').textContent  = formattedTotalSupplies.M_CE3;
+}
+
 function getSupplies_M_CE1(totalSupplies){
   var formattedTotalSupplies = Number(totalSupplies).toLocaleString();
   document.getElementById('stats-M-CE1').textContent  = formattedTotalSupplies

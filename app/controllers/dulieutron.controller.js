@@ -191,6 +191,20 @@ exports.get_total_M_CE1_ByCondition = function(req, res) {
     });
   };
 
+
+  exports.get_total_supplies_ByCondition = function(req, res) {
+    var conditions = {
+      MachineID: req.query.machine,
+      FromDate: req.query.fromDate,
+      NameProduct: req.query.productName,
+      ToDate: req.query.toDate
+    };
+    DuLieuTron.getTotalSuppliesByConditions(conditions, ["M_CE1", "M_CE2", "M_CE3"], function(totalSupplies) {
+        console.log(totalSupplies);
+        res.send({ result: totalSupplies });
+    });
+  };
+  
 exports.add_dulieutron = function(req, res) {
     var data = req.body;
     DuLieuTron.create(data, function(response) {

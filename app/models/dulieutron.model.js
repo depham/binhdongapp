@@ -1029,6 +1029,35 @@ DuLieuTron.getTotal_M_PG_ByConditions = function(conditions, result){
 };
 
 
+DuLieuTron.getTotalSuppliesByConditions = function(conditions, columns, result){
+  var query = "SELECT ";
+  var params = [];
+  var values = [];
+
+  for (var i = 0; i < columns.length; i++) {
+    query += "SUM(" + columns[i] + ") AS " + columns[i];
+    if (i !== columns.length - 1) {
+      query += ", ";
+    }
+  }
+
+  query += " FROM dulieutronbd";
+
+  // Xử lý các điều kiện
+
+  if (params.length > 0) {
+    query += " WHERE " + params.join(" AND ");
+  }
+
+  db.query(query, values, function(err, rows) {
+    if (err) {
+      result(null);
+    } else {
+      result(rows[0]);
+    }
+  });
+};
+
 DuLieuTron.create = function(data, result){
     data.DateCreate = new Date();
     db.query("INSERT INTO dulieutronbd SET ?", data, function(err, dulieutron){

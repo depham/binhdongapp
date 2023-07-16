@@ -34,4 +34,5 @@ module.exports = function(router){
     router.get("/dulieutron/totalsuppliespvce3bycondition", dulieutronController.get_total_PV_CE3_ByCondition);
     router.get("/dulieutron/totalsuppliesmpgbycondition", dulieutronController.get_total_M_PG_ByCondition);
 
+    router.get("/dulieutron/totalsuppliesbycondition", dulieutronController.get_total_supplies_ByCondition);
 }
