@@ -389,7 +389,6 @@ function handleSearch(event) {
     .catch(error => {
       console.error('Lỗi khi lấy tổng số dòng dữ liệu:', error);
   });
-
   
 }
 
@@ -451,13 +450,13 @@ function handleExcelSum(event, conditions) {
    
 }
 function getSupplies(totalSupplies){
-  var formattedTotalSupplies_M1 = totalSupplies.M_CE1;
-  var formattedTotalSupplies_M2 = totalSupplies.M_CE2;
-  var formattedTotalSupplies_M3 = totalSupplies.M_CE3;
-  var formattedTotalSupplies_PV1 = totalSupplies.PV_CE1;
-  var formattedTotalSupplies_PV2 = totalSupplies.PV_CE2;
-  var formattedTotalSupplies_PV3 = totalSupplies.PV_CE3;
-  var formattedTotalSupplies_PVPG = totalSupplies.PV_PG;
+  var formattedTotalSupplies_M1 = addCommasToNumber(totalSupplies.M_CE1);
+  var formattedTotalSupplies_M2 = addCommasToNumber(totalSupplies.M_CE2);
+  var formattedTotalSupplies_M3 = addCommasToNumber(totalSupplies.M_CE3);
+  var formattedTotalSupplies_PV1 = addCommasToNumber(totalSupplies.PV_CE1);
+  var formattedTotalSupplies_PV2 = addCommasToNumber(totalSupplies.PV_CE2);
+  var formattedTotalSupplies_PV3 = addCommasToNumber(totalSupplies.PV_CE3);
+  var formattedTotalSupplies_PVPG = addCommasToNumber(totalSupplies.PV_PG);
   document.getElementById('stats-M-CE1').textContent  = formattedTotalSupplies_M1;
   document.getElementById('stats-M-CE2').textContent  = formattedTotalSupplies_M2;
   document.getElementById('stats-M-CE3').textContent  = formattedTotalSupplies_M3;
@@ -466,6 +465,11 @@ function getSupplies(totalSupplies){
   document.getElementById('stats-PV-CE2').textContent  = formattedTotalSupplies_PV2;
   document.getElementById('stats-PV-CE3').textContent  = formattedTotalSupplies_PV3;
   document.getElementById('stats-PV-PG').textContent  = formattedTotalSupplies_PVPG;
+}
+function addCommasToNumber(number) {
+  var parts = number.toString().split(".");
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  return parts.join(".");
 }
 
 
