@@ -199,7 +199,7 @@ exports.get_total_M_CE1_ByCondition = function(req, res) {
       NameProduct: req.query.productName,
       ToDate: req.query.toDate
     };
-    DuLieuTron.getTotalSuppliesByConditions(conditions, ["M_CE1", "M_CE2", "M_CE3"], function(totalSupplies) {
+    DuLieuTron.getTotalSuppliesByConditions(conditions, ["M_CE1", "M_CE2", "M_CE3", "PV_CE1", "PV_CE2", "PV_CE3", "PV_PG"], function(totalSupplies) {
         console.log(totalSupplies);
         res.send({ result: totalSupplies });
     });
